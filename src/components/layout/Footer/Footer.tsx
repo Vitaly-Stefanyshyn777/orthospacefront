@@ -1,41 +1,76 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Тут буде логіка відправки форми
+    console.log({ email, phone, message });
+    setEmail("");
+    setPhone("");
+    setMessage("");
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.top}>
-          <div className={styles.col}>
+        <div className={styles.left}>
+          <div className={styles.logoWrapper}>
             <Image src="/Logo.svg" alt="Logo" width={60} height={60} />
-            <p className={styles.description}>
-              Сучасна ортодонтична клініка
-            </p>
-          </div>
-          
-          <div className={styles.col}>
-            <h3 className={styles.title}>Навігація</h3>
-            <ul className={styles.list}>
-              <li><a href="#about" className={styles.link}>Про нас</a></li>
-              <li><a href="#services" className={styles.link}>Послуги</a></li>
-              <li><a href="#contact" className={styles.link}>Контакти</a></li>
-            </ul>
-          </div>
-          
-          <div className={styles.col}>
-            <h3 className={styles.title}>Контакти</h3>
-            <ul className={styles.list}>
-              <li className={styles.text}>+380 XX XXX XX XX</li>
-              <li className={styles.text}>info@orthospace.ua</li>
-              <li className={styles.text}>м. Київ</li>
-            </ul>
+            <div className={styles.logoText}>
+              <h2 className={styles.logoTitle}>OrthoSpace</h2>
+              <p className={styles.logoSubtitle}>Romaniv Dental Clinic</p>
+            </div>
           </div>
         </div>
-        
-        <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} OrthoSpace. Всі права захищені.
-          </p>
+
+        <div className={styles.center}>
+          <nav className={styles.nav}>
+            <a href="#" className={styles.navLink}>Головна</a>
+            <a href="#about" className={styles.navLink}>Про клініку</a>
+            <a href="#services" className={styles.navLink}>Послуги</a>
+            <a href="#whyus" className={styles.navLink}>Чому ми</a>
+            <a href="#specialists" className={styles.navLink}>Спеціалісти</a>
+            <a href="#contact" className={styles.navLink}>Контакти</a>
+            <a href="#reviews" className={styles.navLink}>Відгуки</a>
+          </nav>
+        </div>
+
+        <div className={styles.right}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.inputRow}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.input}
+              />
+              <input
+                type="tel"
+                placeholder="Телефон"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className={styles.input}
+              />
+            </div>
+            <textarea
+              placeholder="Опишіть свою проблему"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className={styles.textarea}
+              rows={4}
+            />
+            <button type="submit" className={styles.submitButton}>
+              Залишити заявку
+            </button>
+          </form>
         </div>
       </div>
     </footer>

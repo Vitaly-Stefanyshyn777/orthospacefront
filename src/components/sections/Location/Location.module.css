@@ -1,0 +1,175 @@
+.section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1640px;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #151515;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.description {
+  font-size: 18px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  color: #d00;
+  flex-shrink: 0;
+}
+
+.address {
+  font-size: 16px;
+  font-weight: 500;
+  color: #151515;
+}
+
+.phone {
+  font-size: 16px;
+  font-weight: 500;
+  color: #151515;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.phone:hover {
+  color: #0a513d;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: #151515;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.button:hover {
+  background: #0a513d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.right {
+  flex: 1;
+  min-height: 500px;
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: none;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 40px;
+    flex-direction: column;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .mapWrapper {
+    min-height: 400px;
+  }
+
+  .map {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .description,
+  .text {
+    font-size: 16px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .mapWrapper {
+    min-height: 300px;
+  }
+
+  .map {
+    min-height: 300px;
+  }
+}
+

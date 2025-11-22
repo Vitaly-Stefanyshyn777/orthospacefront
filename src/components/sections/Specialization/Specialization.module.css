@@ -1,0 +1,138 @@
+.specialization {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1428px;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  color: #151515;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+  width: 600px;
+  height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.paragraph {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #151515;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: #101c2b;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.button:hover {
+  background: #1a2b3d;
+  transform: translateY(-2px);
+}
+
+.button svg path {
+  stroke: #ffffff;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 40px;
+  }
+
+  .content {
+    gap: 40px;
+    padding: 30px;
+  }
+
+  .imageWrapper {
+    width: 500px;
+    height: auto;
+    aspect-ratio: 600 / 400;
+  }
+}
+
+@media (max-width: 768px) {
+  .specialization {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 600 / 400;
+  }
+
+  .paragraph {
+    font-size: 16px;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}

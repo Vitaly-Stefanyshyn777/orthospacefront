@@ -1,0 +1,242 @@
+.gallery {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.container {
+
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+  color: #151515;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topRow {
+  display: flex;
+  gap: 20px;
+}
+
+.bottomRow {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* Перший рядок */
+.image1 {
+  width: 519px;
+  height: 270px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image2 {
+  width: 341px;
+  height: 270px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image3 {
+  width: 430px;
+  height: 553px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Другий рядок */
+.image4 {
+  width: 341px;
+  height: 554px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image5 {
+  width: 519px;
+  height: 270px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image6 {
+  width: 519px;
+  height: 270px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image7 {
+  width: 430px;
+  height: 270px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 40px;
+  }
+
+  .grid {
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .leftSection {
+    gap: 16px;
+  }
+
+  .topRow {
+    gap: 16px;
+  }
+
+  .bottomRow {
+    gap: 16px;
+  }
+
+  .column {
+    gap: 16px;
+  }
+
+  .rightSection {
+    gap: 16px;
+  }
+
+  .image1 {
+    width: calc(50% - 8px);
+    height: auto;
+    aspect-ratio: 519 / 270;
+  }
+
+  .image2 {
+    width: calc(50% - 8px);
+    height: auto;
+    aspect-ratio: 341 / 270;
+  }
+
+  .image3 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 430 / 553;
+  }
+
+  .image4 {
+    width: calc(50% - 8px);
+    height: auto;
+    aspect-ratio: 341 / 554;
+  }
+
+  .image5 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 519 / 270;
+  }
+
+  .image6 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 519 / 270;
+  }
+
+  .image7 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 430 / 270;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .grid {
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .leftSection {
+    gap: 16px;
+  }
+
+  .topRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .column {
+    gap: 16px;
+  }
+
+  .rightSection {
+    gap: 16px;
+  }
+
+  .image1,
+  .image2,
+  .image3,
+  .image4,
+  .image5,
+  .image6,
+  .image7 {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+}
+
