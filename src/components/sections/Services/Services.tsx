@@ -25,7 +25,7 @@ const services: Service[] = [
   },
   {
     id: "02",
-    name: "Професійна Гігієна Зубів",
+    name: " Гігієна Зубів",
     price: "700-3000 ГРН",
   },
   {
@@ -91,7 +91,9 @@ export default function Services() {
               return (
                 <div key={service.id} className={styles.serviceItem}>
                   <div
-                    className={styles.serviceHeader}
+                    className={`${styles.serviceHeader} ${
+                      hasSubServices ? styles.clickable : ""
+                    }`}
                     onClick={() => hasSubServices && toggleService(service.id)}
                   >
                     <span className={styles.serviceNumber}>{service.id}</span>
@@ -101,19 +103,23 @@ export default function Services() {
                         {service.price}
                       </span>
                     </div>
-                    {hasSubServices && (
-                      <div className={styles.arrow}>
-                        <ChevronIcon isOpen={isOpen} />
-                      </div>
-                    )}
+                    <div className={styles.arrow}>
+                      <ChevronIcon isOpen={isOpen} />
+                    </div>
                   </div>
 
-                  {hasSubServices && isOpen && (
+                  {hasSubServices && isOpen && service.subServices && (
                     <div className={styles.subServicesContainer}>
                       <div className={styles.subServicesList}>
                         {service.subServices.map((subService, index) => (
                           <div key={index} className={styles.subServiceItem}>
-                            <ToothIcon />
+                            <Image
+                              src="/download1.svg"
+                              alt="Download"
+                              width={49}
+                              height={46}
+                              className={styles.downloadIcon}
+                            />
                             <span className={styles.subServiceName}>
                               {subService.name}
                             </span>

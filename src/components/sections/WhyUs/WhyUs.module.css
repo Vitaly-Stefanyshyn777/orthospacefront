@@ -4,7 +4,7 @@
 }
 
 .container {
-  max-width: 1330px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 80px;
   display: flex;
@@ -13,10 +13,10 @@
 }
 
 .title {
-  font-size: 48px;
+  font-family: var(--third-family);
   font-weight: 500;
+  font-size: 48px;
   color: #151515;
-  line-height: 1.2;
 }
 
 .introText {
@@ -24,10 +24,13 @@
 }
 
 .introText p {
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.6;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 24px;
   color: #151515;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .featuresGrid {
@@ -39,18 +42,24 @@
 .featuresRow {
   display: flex;
   gap: 20px;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: nowrap;
 }
 
 .featureCard {
   width: 430px;
+  min-width: 430px;
+  max-width: 430px;
+  flex: 0 0 430px;
   min-height: 183px;
-  padding: 8px 0;
+  padding: 20px 30px;
   border: 1px solid #303535;
   border-radius: 40px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 20px 30px;
+  box-sizing: border-box;
 }
 
 .featureCard.light {
@@ -66,6 +75,13 @@
   font-weight: 500;
   text-transform: capitalize;
   line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  width: 100%;
+  min-width: 0;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
 }
 
 .featureCard.light .featureTitle {
@@ -80,6 +96,13 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  width: 100%;
+  min-width: 0;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
 }
 
 .featureCard.light .featureDescription {
@@ -90,11 +113,13 @@
   color: #d9e8ff;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .container {
     padding: 0 40px;
   }
+}
 
+@media (max-width: 1200px) {
   .featuresRow {
     flex-wrap: wrap;
     justify-content: center;
@@ -102,45 +127,87 @@
 
   .featureCard {
     width: calc(50% - 10px);
+    min-width: calc(50% - 10px);
     max-width: 430px;
+    flex: 1 1 calc(50% - 10px);
   }
 }
 
-@media (max-width: 768px) {
+.mobileSlider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.swiper {
+  width: 100%;
+  padding-bottom: 20px;
+  overflow: visible;
+}
+
+.swiper :global(.swiper-wrapper) {
+  display: flex;
+  align-items: stretch;
+}
+
+.swiper :global(.swiper-slide) {
+  width: 100% !important;
+  min-width: 100% !important;
+  flex-shrink: 0 !important;
+  height: auto;
+}
+
+.swiperSlide {
+  width: 100% !important;
+  min-width: 100% !important;
+  flex-shrink: 0 !important;
+  height: auto;
+}
+
+@media (max-width: 1000px) {
   .whyUs {
-    padding: 60px 0;
+    padding: mvw(60) 0;
   }
 
   .container {
-    padding: 0 20px;
-    gap: 30px;
+    padding: 0 mvw(20);
+    gap: mvw(30);
   }
 
   .title {
-    font-size: 36px;
+    font-size: mvw(32);
   }
 
   .introText p {
-    font-size: 16px;
+    font-size: mvw(18);
   }
 
-  .featuresRow {
-    flex-direction: column;
-    gap: 16px;
+  .mobileSlider {
+    gap: mvw(24);
+  }
+
+  .swiper {
+    padding-bottom: mvw(20);
   }
 
   .featureCard {
-    width: 100%;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
     min-height: auto;
-    padding: 16px 20px;
+    padding: mvw(20) mvw(30);
+    border-radius: mvw(40);
+    box-sizing: border-box;
   }
 
   .featureTitle {
-    font-size: 20px;
+    font-size: mvw(24);
   }
 
   .featureDescription {
-    font-size: 16px;
+    font-size: mvw(18);
   }
 }
-

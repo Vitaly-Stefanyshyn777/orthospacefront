@@ -70,9 +70,16 @@ export default function Specialists() {
   const swiperRef = useRef<any>(null);
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const handlePrev = () => {
@@ -99,20 +106,24 @@ export default function Specialists() {
         <div className={styles.sliderWrapper}>
           <div className={styles.sliderWindow}>
             <Swiper
-              modules={[EffectCoverflow]}
-              effect="coverflow"
+              modules={isMobile ? [] : [EffectCoverflow]}
+              effect={isMobile ? undefined : "coverflow"}
               grabCursor={true}
               centeredSlides={true}
-              slidesPerView="auto"
+              slidesPerView={isMobile ? 1 : "auto"}
               spaceBetween={20}
-              coverflowEffect={{
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2,
-                slideShadows: false,
-                scale: 0.8,
-              }}
+              coverflowEffect={
+                isMobile
+                  ? undefined
+                  : {
+                      rotate: 0,
+                      stretch: 0,
+                      depth: 100,
+                      modifier: 1.5,
+                      slideShadows: false,
+                      scale: 0.9,
+                    }
+              }
               loop={true}
               speed={600}
               breakpoints={{
@@ -157,16 +168,17 @@ export default function Specialists() {
               ))}
             </Swiper>
           </div>
-
-          <SliderNav
-            activeIndex={swiperIndex}
-            dots={specialists.length}
-            onPrev={handlePrev}
-            onNext={handleNext}
-            onDotClick={handleDotClick}
-            buttonBgColor="#ffffff"
-            containerClassName={styles.sliderNavWrapper}
-          />
+          {isMobile && (
+            <SliderNav
+              activeIndex={swiperIndex}
+              dots={specialists.length}
+              onPrev={handlePrev}
+              onNext={handleNext}
+              onDotClick={handleDotClick}
+              buttonBgColor="#ffffff"
+              containerClassName={styles.sliderNavWrapper}
+            />
+          )}
         </div>
       </div>
     </section>

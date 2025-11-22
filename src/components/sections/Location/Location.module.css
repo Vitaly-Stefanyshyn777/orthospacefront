@@ -9,7 +9,7 @@
   padding: 0 80px;
   display: flex;
   gap: 40px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .left {
@@ -17,12 +17,16 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   font-size: 48px;
   font-weight: 700;
-  color: #151515;
+  color: #101c2b;
   line-height: 1.2;
   margin: 0;
 }
@@ -30,7 +34,7 @@
 .description {
   font-size: 18px;
   font-weight: 400;
-  color: #666;
+  color: #101c2b;
   line-height: 1.6;
   margin: 0;
 }
@@ -50,6 +54,22 @@
 .icon {
   color: #d00;
   flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.infoItem svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.infoItem:first-child svg {
+  color: #d00;
+}
+
+.infoItem:last-child svg {
+  color: #151515;
 }
 
 .address {
@@ -73,7 +93,7 @@
 .text {
   font-size: 16px;
   font-weight: 400;
-  color: #666;
+  color: #101c2b;
   line-height: 1.6;
   margin: 0;
 }
@@ -84,7 +104,7 @@
   justify-content: center;
   gap: 8px;
   padding: 16px 32px;
-  background: #151515;
+  background: #101c2b;
   color: #ffffff;
   border: none;
   border-radius: 12px;
@@ -93,12 +113,17 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: fit-content;
+  margin-top: 8px;
 }
 
 .button:hover {
-  background: #0a513d;
+  background: #1a2b3d;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button svg path {
+  stroke: #ffffff;
 }
 
 .right {
@@ -141,35 +166,71 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .section {
-    padding: 60px 0;
+    padding: mvw(60) 0;
   }
 
   .container {
-    padding: 0 20px;
-    gap: 30px;
+    padding: 0 mvw(20);
+    gap: mvw(30);
+    flex-direction: column;
+  }
+
+  .left {
+    padding: mvw(24);
+    border-radius: mvw(20);
+    gap: mvw(20);
   }
 
   .title {
-    font-size: 36px;
+    font-size: mvw(28);
   }
 
   .description,
   .text {
-    font-size: 16px;
+    font-size: mvw(16);
+  }
+
+  .info {
+    gap: mvw(12);
+  }
+
+  .infoItem {
+    gap: mvw(12);
+  }
+
+  .infoItem svg {
+    width: mvw(20);
+    height: mvw(20);
+  }
+
+  .address,
+  .phone {
+    font-size: mvw(14);
   }
 
   .button {
     width: 100%;
+    padding: mvw(14) mvw(24);
+    font-size: mvw(16);
+    border-radius: mvw(12);
+    margin-top: mvw(8);
+  }
+
+  .button svg {
+    width: mvw(20);
+    height: mvw(20);
   }
 
   .mapWrapper {
-    min-height: 300px;
+    min-height: mvw(300);
+    border-radius: mvw(16);
   }
 
   .map {
-    min-height: 300px;
+    min-height: mvw(300);
+    border-radius: mvw(16);
   }
 }
 

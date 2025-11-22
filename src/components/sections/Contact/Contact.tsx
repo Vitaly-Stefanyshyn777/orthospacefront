@@ -16,10 +16,6 @@ import { useMemo, useState } from "react";
 type FormValues = {
   email: string;
   phone: string;
-  name: string;
-  address: string;
-  workType: string;
-  consent: boolean;
   message: string;
 };
 
@@ -58,9 +54,7 @@ export default function Contact() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormValues>({
-    defaultValues: { workType: "", consent: false },
-  });
+  } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
     setSubmitError(null);
@@ -68,13 +62,13 @@ export default function Contact() {
     setIsSubmitting(true);
     try {
       const payload = {
-        name: data.name,
+        name: "Contact Form",
         phone: data.phone,
         email: data.email,
-        workType: data.workType,
+        workType: "",
         message: data.message,
         consent: true,
-        address: data.address,
+        address: "",
         contactTime: undefined,
         source: utmSource,
         files: undefined,
@@ -85,10 +79,6 @@ export default function Contact() {
       reset({
         email: "",
         phone: "",
-        name: "",
-        address: "",
-        workType: "",
-        consent: false,
         message: "",
       });
     } catch (e: unknown) {
@@ -104,184 +94,118 @@ export default function Contact() {
     <section className={styles.section} id="contact">
       <div className={styles.container}>
         <div className={styles.left}>
-          <div className={styles.leftTopRow}>
-            <div className={styles.leftCol}>
-              <span className={styles.h1}>
-                Jste připraveni začít svůj projekt?
-              </span>
-              <p>
-                Nechte nám žádost a náš specialista vás kontaktuje do hodiny,
-                abychom prodiskutovali detaily a provedli bezplatnou prohlídku
-                nemovitosti.
-              </p>
-            </div>
-            <div className={styles.leftCollow}>
-              <div className={styles.infoItem}>
-                <span className={styles.infoIcon}>
-                  <NumberIcon />
-                </span>
-                <div className={styles.infoText}>
-                  <a href="tel:+420608583115" className={styles.phoneTitle}>
-                    +420 608 583 115
-                  </a>
-                  <p className={styles.phoneSub}>Volejte kdykoli</p>
-                </div>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoIcon}>
-                  <EmailIcon />
-                </span>
-                <div className={styles.infoText}>
-                  <a
-                    href="mailto:rekogrinikcz@gmail.com"
-                    className={styles.emailTitle}
-                  >
-                    rekogrinikcz@gmail.com
-                  </a>
-                  <p className={styles.emailSub}>Odpovídáme do hodiny</p>
-                </div>
-              </div>
-            </div>
+          <h2 className={styles.title}>Контакти</h2>
 
-            <div className={styles.leftBottom}>
-              <div className={styles.scheduleBlock}>
-                <div className={styles.timeRow}>
-                  <span className={styles.timeIcon}>
-                    <TimeIcon />
-                  </span>
-                  <p>Pracovní doba</p>
-                </div>
-                <div className={styles.schedule}>
-                  <div className={styles.scheduleCol}>
-                    <p className={styles.scheduleDays}>Po–Pá</p>
-                    <p className={styles.scheduleTime}>08:00 - 20:00</p>
-                  </div>
-                  <div className={styles.scheduleCol}>
-                    <p className={styles.scheduleDays}>Sobota-Neděle</p>
-                    <p className={styles.scheduleTime}>09:00 - 18:00</p>
-                  </div>
-                </div>
+          <div className={styles.contactSection}>
+            <h3 className={styles.sectionTitle}>Зв'яжіться з нами</h3>
+            <p className={styles.sectionDescription}>
+              Залишіть нам заявку, і наш спеціаліст зв'яжеться з вами протягом
+              години, щоб обговорити деталі та провести безкоштовний огляд.
+            </p>
+
+            <div className={styles.infoItem}>
+              <span className={styles.infoIcon}>
+                <NumberIcon />
+              </span>
+              <div className={styles.infoText}>
+                <a href="tel:+380505115810" className={styles.phoneTitle}>
+                  +380505115810
+                </a>
+                <p className={styles.phoneSub}>Телефонуйте 08:00 - 20:00</p>
               </div>
-              <div className={styles.socialBlock}>
-                <p className={styles.followTitle}>Kontaktujte nás</p>
-                <div className={styles.iconsRow}>
-                  <a
-                    href="https://www.instagram.com/rekogrinik_s.r.o?igsh=MTlxMHgyYW11N3B0bQ=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.iconWrap}
-                    aria-label="Instagram"
-                  >
-                    <Instagram2Icon />
-                  </a>
-                  <a
-                    href="https://wa.me/420608583115"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.iconWrap}
-                    aria-label="WhatsApp"
-                  >
-                    <WhatsappIcon />
-                  </a>
-                  <a
-                    href="https://t.me/+420608583115"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.iconWrap}
-                    aria-label="Telegram"
-                  >
-                    <TelegramIcon />
-                  </a>
-                </div>
+            </div>
+          </div>
+
+          <div className={styles.scheduleBlock}>
+            <div className={styles.timeRow}>
+              <span className={styles.timeIcon}>
+                <TimeIcon />
+              </span>
+              <p>Графік роботи</p>
+            </div>
+            <div className={styles.schedule}>
+              <div className={styles.scheduleCol}>
+                <p className={styles.scheduleDays}>Пн-Пт</p>
+                <p className={styles.scheduleTime}>08:00 - 20:00</p>
               </div>
+              <div className={styles.scheduleCol}>
+                <p className={styles.scheduleDays}>Сб-Нд</p>
+                <p className={styles.scheduleTime}>09:00 - 18:00</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.socialBlock}>
+            <p className={styles.followTitle}>Слідкуйте за нами</p>
+            <div className={styles.iconsRow}>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.iconWrap}
+                aria-label="Instagram"
+              >
+                <Instagram2Icon />
+              </a>
+              <a
+                href="https://wa.me/380505115810"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.iconWrap}
+                aria-label="WhatsApp"
+              >
+                <WhatsappIcon />
+              </a>
+              <a
+                href="https://t.me/+380505115810"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.iconWrap}
+                aria-label="Telegram"
+              >
+                <TelegramIcon />
+              </a>
             </div>
           </div>
         </div>
         <div className={styles.right}>
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.formGrid}>
-              <div className={styles.fieldPair}>
-                <div className={styles.field}>
-                  <input
-                    placeholder="E-mailová adresa pro kontakt"
-                    {...register("email", {
-                      required: "E-mail je povinný",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Neplatný formát e-mailu",
-                      },
-                    })}
-                  />
-                  {errors.email && <span className={styles.err}>*</span>}
-                </div>
-                <div className={styles.field}>
-                  <input
-                    placeholder="Vaše telefonní číslo"
-                    {...register("phone", {
-                      required: "Telefon je povinný",
-                      pattern: {
-                        value: /^[\+]?[0-9\s\-\(\)]{10,}$/,
-                        message: "Neplatný formát telefonu",
-                      },
-                    })}
-                  />
-                  {errors.phone && <span className={styles.err}>*</span>}
-                </div>
-              </div>
-              <div className={styles.fieldPair}>
-                <div className={styles.field}>
-                  <input
-                    placeholder="Jméno pro adresu"
-                    {...register("name", {
-                      required: "Jméno je povinné",
-                      minLength: {
-                        value: 2,
-                        message: "Minimálně 2 znaky",
-                      },
-                    })}
-                  />
-                  {errors.name && <span className={styles.err}>*</span>}
-                </div>
-                <div className={styles.field}>
-                  <input
-                    placeholder="Vaše adresa"
-                    {...register("address", {
-                      required: "Adresa je povinná",
-                      minLength: {
-                        value: 5,
-                        message: "Minimálně 5 znaků",
-                      },
-                    })}
-                  />
-                  {errors.address && <span className={styles.err}>*</span>}
-                </div>
-              </div>
-            </div>
-            <div className={styles.selectRow}>
+            <div className={styles.field}>
               <input
-                // list="workTypes"
-                placeholder="Vyberte typ práce"
-                {...register("workType", {
-                  required: "Typ práce je povinný",
+                type="email"
+                placeholder="Email"
+                {...register("email", {
+                  required: "Email обов'язковий",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Невірний формат email",
+                  },
                 })}
-                className={styles.workTypeInput}
               />
-              <datalist id="workTypes">
-                <option value="Oprava bytu" />
-                <option value="Koupelny" />
-                <option value="Sádrokarton" />
-                <option value="Kompletní rekonstrukce" />
-                <option value="Kosmetické opravy" />
-              </datalist>
+              {errors.email && <span className={styles.err}>*</span>}
+            </div>
+            <div className={styles.field}>
+              <input
+                type="tel"
+                placeholder="Телефон"
+                {...register("phone", {
+                  required: "Телефон обов'язковий",
+                  pattern: {
+                    value: /^[\+]?[0-9\s\-\(\)]{10,}$/,
+                    message: "Невірний формат телефону",
+                  },
+                })}
+              />
+              {errors.phone && <span className={styles.err}>*</span>}
             </div>
             <div className={styles.textareaRow}>
               <textarea
                 rows={4}
-                placeholder="Řekněte nám více o vašem projektu..."
+                placeholder="Опишіть свою проблему"
                 {...register("message", {
                   maxLength: {
                     value: 500,
-                    message: "Maximálně 500 znaků",
+                    message: "Максимум 500 символів",
                   },
                 })}
               ></textarea>
@@ -292,13 +216,13 @@ export default function Contact() {
                 className={styles.submit}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Odesílání..." : "Odeslat žádost"}
+                {isSubmitting ? "Відправлення..." : "Залишити за'явку"}
               </button>
               <p className={styles.note}>
-                Kliknutím na tlačítko souhlasíte se zpracováním osobních údajů v
-                souladu s{" "}
+                Натискаючи кнопку, ви погоджуєтеся на обробку персональних даних
+                відповідно до{" "}
                 <Link href="/privacy" className={styles.privacyLink}>
-                  zásadami ochrany osobních údajů
+                  політики конфіденційності
                 </Link>
                 .
               </p>
@@ -309,7 +233,7 @@ export default function Contact() {
               )}
               {submitSuccess && (
                 <p className={styles.note} style={{ color: "#0a513d" }}>
-                  Děkujeme! Žádost přijata (ID: {submitSuccess}).
+                  Дякуємо! Заявка прийнята (ID: {submitSuccess}).
                 </p>
               )}
             </div>

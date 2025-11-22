@@ -30,7 +30,7 @@
 
 .navLink {
   color: #101c2b;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.4;
   white-space: nowrap;
@@ -53,7 +53,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  border-radius: 8px;
+  border-radius: 28px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -80,3 +80,51 @@
   background: #2a3748;
 }
 
+@media (max-width: 1000px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .container {
+    padding: mvw(12) mvw(20);
+    gap: mvw(16);
+  }
+
+  .logo {
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: mvw(40);
+    height: mvw(40);
+  }
+
+  .nav {
+    display: none; /* На мобільних приховаємо навігацію, можна додати гамбургер-меню */
+  }
+
+  .actions {
+    gap: mvw(8);
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .btnCall,
+  .btnAppointment {
+    padding: mvw(10) mvw(16);
+    font-size: mvw(12);
+    border-radius: mvw(6);
+    gap: mvw(6);
+  }
+
+  .btnCall span,
+  .btnAppointment span {
+    display: none; /* На мобільних приховуємо текст, залишаємо тільки іконки */
+  }
+}

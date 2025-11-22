@@ -1,4 +1,12 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import styles from "./WhyUs.module.css";
+import SliderNav from "@/src/components/ui/Button/SliderNav/SliderNavActions";
 
 const features = [
   {
@@ -40,6 +48,38 @@ const features = [
 ];
 
 export default function WhyUs() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [swiperIndex, setSwiperIndex] = useState(0);
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1000);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handlePrev = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
+  const handleNext = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
+
+  const handleDotClick = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index);
+    }
+  };
+
   return (
     <section className={styles.whyUs}>
       <div className={styles.container}>
@@ -51,30 +91,73 @@ export default function WhyUs() {
           </p>
         </div>
 
-        <div className={styles.featuresGrid}>
-          <div className={styles.featuresRow}>
-            {features.slice(0, 3).map((feature) => (
-              <div
-                key={feature.id}
-                className={`${styles.featureCard} ${styles[feature.variant]}`}
-              >
-                <h3 className={styles.featureTitle}>{feature.title}</h3>
-                <p className={styles.featureDescription}>{feature.description}</p>
-              </div>
-            ))}
+        {isMobile ? (
+          <div className={styles.mobileSlider}>
+            <Swiper
+              modules={[Navigation]}
+              slidesPerView={1}
+              spaceBetween={20}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              onSlideChange={(swiper) => {
+                setSwiperIndex(swiper.realIndex);
+              }}
+              className={styles.swiper}
+            >
+              {features.map((feature) => (
+                <SwiperSlide key={feature.id} className={styles.swiperSlide}>
+                  <div
+                    className={`${styles.featureCard} ${styles[feature.variant]}`}
+                  >
+                    <h3 className={styles.featureTitle}>{feature.title}</h3>
+                    <p className={styles.featureDescription}>
+                      {feature.description}
+                    </p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            {isMobile && (
+              <SliderNav
+                activeIndex={swiperIndex}
+                dots={features.length}
+                onPrev={handlePrev}
+                onNext={handleNext}
+                onDotClick={handleDotClick}
+              />
+            )}
           </div>
-          <div className={styles.featuresRow}>
-            {features.slice(3, 6).map((feature) => (
-              <div
-                key={feature.id}
-                className={`${styles.featureCard} ${styles[feature.variant]}`}
-              >
-                <h3 className={styles.featureTitle}>{feature.title}</h3>
-                <p className={styles.featureDescription}>{feature.description}</p>
-              </div>
-            ))}
+        ) : (
+          <div className={styles.featuresGrid}>
+            <div className={styles.featuresRow}>
+              {features.slice(0, 3).map((feature) => (
+                <div
+                  key={feature.id}
+                  className={`${styles.featureCard} ${styles[feature.variant]}`}
+                >
+                  <h3 className={styles.featureTitle}>{feature.title}</h3>
+                  <p className={styles.featureDescription}>
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className={styles.featuresRow}>
+              {features.slice(3, 6).map((feature) => (
+                <div
+                  key={feature.id}
+                  className={`${styles.featureCard} ${styles[feature.variant]}`}
+                >
+                  <h3 className={styles.featureTitle}>{feature.title}</h3>
+                  <p className={styles.featureDescription}>
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

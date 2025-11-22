@@ -20,14 +20,16 @@ export default function Specialization() {
           </div>
 
           <div className={styles.textBlock}>
-            <p className={styles.paragraph}>
-              Ми спеціалізуємося на ортодонтії та терапії, поєднуючи точність
-              медицини з естетикою посмішки.
-            </p>
-            <p className={styles.paragraph}>
-              Кожен наш пацієнт отримує не лише лікування — а гармонію,
-              впевненість і комфорт на кожному етапі.
-            </p>
+            <div className={styles.paragraphsBlock}>
+              <p className={styles.paragraph}>
+                Ми спеціалізуємося на ортодонтії та терапії, поєднуючи точність
+                медицини з естетикою посмішки.
+              </p>
+              <p className={styles.paragraph}>
+                Кожен наш пацієнт отримує не лише лікування — а гармонію,
+                впевненість і комфорт на кожному етапі.
+              </p>
+            </div>
             <button className={styles.button}>
               <CalendarIcon />
               <span>Записатись на прийом</span>

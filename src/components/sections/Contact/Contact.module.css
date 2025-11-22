@@ -8,6 +8,12 @@
   );
   background-color: #1a2b3d;
   max-width: 1640px;
+
+  border-radius: 50px;
+  width: 1653px;
+  height: 740px;
+  display: flex;
+  align-items: center;
 }
 .container {
   width: 100%;
@@ -24,13 +30,45 @@
     rgba(0, 0, 0, 0) 100%
   );
   color: #e7f0ec;
-
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   border-radius: 20px;
   height: 100%;
+}
+
+.title {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 48px;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sectionDescription {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.6;
 }
 .right {
   flex: 1;
@@ -438,64 +476,149 @@
 
 @media (max-width: 1000px) {
   .section {
-    padding: 60px 20px;
+    padding: mvw(60) mvw(20);
   }
   .container {
     flex-direction: column;
+    padding: 0 mvw(20);
+    gap: mvw(24);
   }
-  .leftCol {
-    gap: 8px;
+  .left {
+    padding: mvw(24);
+    gap: mvw(24);
+    border-radius: mvw(20);
   }
-  .leftCol span {
-    font-family: var(--second-family);
-    font-weight: 700;
-    font-size: 23px;
-    color: #fff;
+  .title {
+    font-size: mvw(32);
   }
-  .leftCol p {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+  .contactSection {
+    gap: mvw(16);
+  }
+  .sectionTitle {
+    font-size: mvw(20);
+  }
+  .sectionDescription {
+    font-size: mvw(14);
+  }
+  .leftCollow {
+    gap: mvw(16);
+  }
+  .infoItem {
+    gap: mvw(12);
+  }
+  .infoIcon {
+    width: mvw(40);
+    height: mvw(40);
+  }
+  .infoIcon svg {
+    width: mvw(18);
+    height: mvw(18);
+  }
+  .phoneTitle,
+  .emailTitle {
+    font-size: mvw(16);
+  }
+  .phoneSub,
+  .emailSub {
+    font-size: mvw(14);
+  }
+  .leftBottom {
+    gap: mvw(40);
+  }
+  .scheduleBlock {
+    gap: mvw(12);
+  }
+  .timeRow {
+    gap: mvw(12);
+  }
+  .timeRow svg {
+    width: mvw(20);
+    height: mvw(20);
+  }
+  .timeRow p {
+    font-size: mvw(16);
+  }
+  .schedule {
+    gap: mvw(24);
+  }
+  .scheduleCol {
+    gap: mvw(8);
+  }
+  .scheduleDays,
+  .scheduleTime {
+    font-size: mvw(14);
+  }
+  .socialBlock {
+    gap: mvw(12);
+  }
+  .followTitle {
+    font-size: mvw(14);
+  }
+  .iconsRow {
+    gap: mvw(12);
+  }
+  .iconWrap {
+    width: mvw(40);
+    height: mvw(40);
+  }
+  .iconWrap svg {
+    width: mvw(20);
+    height: mvw(20);
+  }
+  .form {
+    padding: mvw(16);
+    gap: mvw(16);
+    border-radius: mvw(16);
+  }
+  .formGrid {
+    gap: mvw(16);
+  }
+  .fieldPair {
+    flex-direction: column;
+    gap: mvw(16);
+  }
+  .field input {
+    padding: mvw(14) mvw(12);
+    font-size: mvw(14);
+    border-radius: mvw(8);
+  }
+  .err {
+    right: mvw(8);
+    top: mvw(8);
+    font-size: mvw(14);
+  }
+  .selectRow {
+    border-radius: mvw(8);
+  }
+  .workTypeInput {
+    height: mvw(48);
+    padding: 0 mvw(16);
+    font-size: mvw(14);
+  }
+  .textareaRow textarea {
+    padding: mvw(14);
+    font-size: mvw(14);
+    border-radius: mvw(10);
+    line-height: 1.5;
+  }
+  .actions {
+    gap: mvw(16);
   }
   .submit {
     font-family: var(--second-family);
     font-weight: 700;
-    font-size: 16px;
-    line-height: 175%;
+    font-size: mvw(16);
+    line-height: 1.5;
     color: #fff;
-    height: 42px;
-  }
-  .textareaRow textarea {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 11px;
-    color: rgba(10, 10, 10, 0.5);
-  }
-  .selectRow {
-    border-radius: 8px;
-  }
-
-  /* .field input {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 11px;
-    color: #717182;
-  } */
-  .fieldPair {
-    flex-direction: column;
-  }
-  .formGrid {
-    gap: 16px;
-  }
-  .fieldPair {
-    gap: 16px;
+    height: mvw(48);
+    padding: 0 mvw(18);
+    border-radius: mvw(12);
   }
   .note {
     font-family: var(--font-family);
     font-weight: 400;
-    font-size: 10px;
-    line-height: 165%;
+    font-size: mvw(12);
+    line-height: 1.5;
     text-align: center;
     color: #6a7282;
   }
