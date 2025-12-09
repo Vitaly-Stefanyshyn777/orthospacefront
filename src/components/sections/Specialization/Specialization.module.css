@@ -160,9 +160,10 @@
     justify-content: center;
     padding: mvw(14) mvw(24);
     font-size: mvw(16);
-    border-radius: mvw(8);
+    /* border-radius: mvw(8); */
     margin-top: mvw(8);
     gap: mvw(8);
+    border-radius: mvw(20);
   }
 
   .button svg {

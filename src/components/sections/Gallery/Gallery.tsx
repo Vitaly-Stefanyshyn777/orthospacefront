@@ -133,7 +133,7 @@ export default function Gallery() {
                 onPrev={handlePrev}
                 onNext={handleNext}
                 onDotClick={handleDotClick}
-                buttonBgColor="#ffffff"
+                buttonBgColor="#f5f5f5"
                 containerClassName={styles.sliderNavWrapper}
               />
             )}

@@ -174,7 +174,7 @@ export default function Specialists() {
             onPrev={handlePrev}
             onNext={handleNext}
             onDotClick={handleDotClick}
-            buttonBgColor={isMobile ? "#ffffff" : "#101c2b"}
+            buttonBgColor="#f5f5f5"
             containerClassName={styles.sliderNavWrapper}
           />
         </div>

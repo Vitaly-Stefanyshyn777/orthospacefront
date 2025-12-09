@@ -227,6 +227,8 @@
     border: 1px solid #e5e5e5;
     border-radius: mvw(16);
     background: #ffffff;
+    border: 1px solid #303535;
+    border-radius: mvw(40);
   }
 
   .serviceHeader {
@@ -238,7 +240,7 @@
   .serviceNumber {
     font-size: mvw(40);
     font-weight: 400;
-    color: #9ca3af;
+    color: #101c2b;
     min-width: mvw(50);
     display: flex;
     align-items: center;

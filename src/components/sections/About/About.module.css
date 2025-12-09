@@ -80,7 +80,7 @@
   .container {
     padding: 0 mvw(20);
     max-width: 100%;
-    gap: mvw(24);
+    gap: mvw(45);
     align-items: stretch;
   }
 
@@ -98,7 +98,7 @@
   }
 
   .textBlock {
-    gap: mvw(16);
+    gap: mvw(20);
     width: 100%;
   }
 

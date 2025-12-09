@@ -228,6 +228,7 @@
     width: 100% !important;
     max-width: 100% !important;
     border-radius: mvw(20) mvw(20) 0 0;
+    border-radius: mvw(20);
   }
 
   .imageWrapper {
@@ -240,6 +241,7 @@
   .cardContent {
     padding: mvw(20);
     gap: mvw(12);
+    background: #f9f9f9;
   }
 
   .name {
@@ -255,6 +257,7 @@
     font-size: mvw(14);
     border-radius: mvw(12);
     margin-top: mvw(8);
+    border-radius: mvw(20);
   }
 
   .sliderNavWrapper {

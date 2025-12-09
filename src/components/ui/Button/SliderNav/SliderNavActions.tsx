@@ -8,7 +8,7 @@ export default function SliderNav({
   onPrev,
   onNext,
   onDotClick,
-  buttonBgColor = "var(--white)",
+  buttonBgColor = "#f5f5f5",
   containerClassName,
 }: {
   activeIndex: number;

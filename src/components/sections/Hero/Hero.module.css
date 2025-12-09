@@ -177,10 +177,11 @@
   }
 
   .title {
-    font-size: mvw(24);
+    font-size: mvw(30);
     color: #ffffff;
     line-height: 1.3;
     font-weight: 700;
+    font-weight: 800;
   }
 
   .textBlock {
@@ -217,6 +218,7 @@
   .btnPrimary {
     background: #ffffff;
     color: #101c2b;
+    gap: mvw(8);
   }
 
   .btnPrimary svg path {
@@ -227,6 +229,7 @@
     background: transparent;
     color: #ffffff;
     border: 1px solid #ffffff;
+    gap: mvw(8);
   }
 
   .btnSecondary svg path {
