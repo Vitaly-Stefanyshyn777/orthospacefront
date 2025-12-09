@@ -4,7 +4,7 @@ import { LocationIcon, PhoneIcon, CalendarIcon } from "@/src/icons/Icons";
 
 export default function Location() {
   return (
-    <section className={styles.section}>
+    <section id="location" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.left}>
           <h2 className={styles.title}>Де нас знайти?</h2>

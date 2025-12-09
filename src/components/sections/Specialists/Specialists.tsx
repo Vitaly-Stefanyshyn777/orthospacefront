@@ -99,7 +99,7 @@ export default function Specialists() {
   }
 
   return (
-    <section className={styles.specialists}>
+    <section id="specialists" className={styles.specialists}>
       <div className={styles.container}>
         <h2 className={styles.title}>Спеціалісти</h2>
 

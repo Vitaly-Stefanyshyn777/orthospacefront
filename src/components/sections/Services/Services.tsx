@@ -155,7 +155,7 @@ export default function Services() {
   };
 
   return (
-    <section className={styles.services}>
+    <section id="services" className={styles.services}>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>Наші Послуги</h2>

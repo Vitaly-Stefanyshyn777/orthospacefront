@@ -81,7 +81,7 @@ export default function WhyUs() {
   };
 
   return (
-    <section className={styles.whyUs}>
+    <section id="whyus" className={styles.whyUs}>
       <div className={styles.container}>
         <h2 className={styles.title}>Чому саме OrthoSpace</h2>
 

@@ -4,7 +4,7 @@ import { CalendarIcon } from "@/src/icons/Icons";
 
 export default function Specialization() {
   return (
-    <section className={styles.specialization}>
+    <section id="specialization" className={styles.specialization}>
       <div className={styles.container}>
         <h2 className={styles.title}>Наша спеціалізація</h2>
 
