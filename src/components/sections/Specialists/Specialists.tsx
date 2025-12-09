@@ -161,7 +161,14 @@ export default function Specialists() {
                     <div className={styles.cardContent}>
                       <h3 className={styles.name}>{specialist.name}</h3>
                       <p className={styles.position}>{specialist.position}</p>
-                      <button className={styles.button}>Записатися</button>
+                      <a
+                        href="https://cliniccards.com/booking/J9oUok9feahjYFJ2hRfuXDCRwAGBbBW8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.button}
+                      >
+                        Записатися
+                      </a>
                     </div>
                   </div>
                 </SwiperSlide>

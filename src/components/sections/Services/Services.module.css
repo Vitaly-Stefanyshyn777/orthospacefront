@@ -105,11 +105,10 @@
   color: #101b2b;
 }
 
-.downloadIcon {
+.toothIcon {
   flex-shrink: 0;
   width: 49px;
   height: 46px;
-  margin-left: auto;
 }
 
 .arrow {
@@ -165,18 +164,28 @@
 }
 
 .subServiceName {
-  font-size: 20px;
-  font-weight: 400;
-  color: #151515;
   flex: 1;
   line-height: 1.4;
 }
 
 .subServicePrice {
-  font-size: 20px;
-  font-weight: 400;
-  color: #151515;
   line-height: 1.4;
+}
+
+@media (min-width: 1001px) {
+  .subServiceName {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    color: #151515;
+  }
+
+  .subServicePrice {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    color: #151515;
+  }
 }
 
 @media (max-width: 1200px) {

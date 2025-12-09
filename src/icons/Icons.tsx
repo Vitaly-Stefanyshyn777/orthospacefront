@@ -76,13 +76,14 @@ export const ChevronIcon = ({ isOpen = false }: { isOpen?: boolean }) => (
   </svg>
 );
 
-export const ToothIcon = () => (
+export const ToothIcon = ({ className = "" }: { className?: string }) => (
   <svg
     width="20"
     height="20"
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={className}
   >
     <path
       d="M10 2C10 2 8 4 8 6C8 7 8.5 7.5 9 8C9.5 8.5 10 9 10 10C10 11 9.5 11.5 9 12C8.5 12.5 8 13 8 14C8 16 10 18 10 18C10 18 12 16 12 14C12 13 11.5 12.5 11 12C10.5 11.5 10 11 10 10C10 9 10.5 8.5 11 8C11.5 7.5 12 7 12 6C12 4 10 2 10 2Z"

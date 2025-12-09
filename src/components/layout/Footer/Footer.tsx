@@ -4,23 +4,50 @@ import { useState } from "react";
 import styles from './Footer.module.css';
 import SecondaryInput from "@/src/components/ui/Button/SliderNav/SecondaryInput";
 import Multiline from "@/src/components/ui/Button/SliderNav/Multiline";
-import { EmailIcon, NumberIcon } from "@/src/icons/Icons";
+import { apiClient } from "@/api/client";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const isFormFilled = email.trim() && phone.trim();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isFormFilled) return;
-    // Тут буде логіка відправки форми
-    console.log({ email, phone, message });
-    setEmail("");
-    setPhone("");
-    setMessage("");
+
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        name: "Footer Form",
+        phone: phone,
+        email: email,
+        workType: "",
+        message: message,
+        consent: true,
+        address: "",
+        contactTime: undefined,
+        source: undefined,
+        files: undefined,
+        locale: "uk",
+      };
+
+      await apiClient.submitForm(payload);
+      setEmail("");
+      setPhone("");
+      setMessage("");
+    } catch (e: unknown) {
+      setSubmitError(
+        e instanceof Error ? e.message : "Помилка відправки форми"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -77,10 +104,15 @@ export default function Footer() {
             <button
               type="submit"
               className={`${styles.submitButton} ${!isFormFilled ? styles.submitButtonDisabled : ""}`}
-              disabled={!isFormFilled}
+              disabled={!isFormFilled || isSubmitting}
             >
-              Залишити заявку
+              {isSubmitting ? "Відправлення..." : "Залишити заявку"}
             </button>
+            {submitError && (
+              <p className={styles.note} style={{ color: "#d00" }}>
+                {submitError}
+              </p>
+            )}
           </form>
         </div>
       </div>

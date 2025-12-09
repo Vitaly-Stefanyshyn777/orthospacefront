@@ -24,7 +24,6 @@ type FormValues = {
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
 
   // Визначаємо мову інтерфейсу як locale для бекенду
   const locale = useMemo(() => {
@@ -64,7 +63,6 @@ export default function Contact() {
 
   const onSubmit = async (data: FormValues) => {
     setSubmitError(null);
-    setSubmitSuccess(null);
     setIsSubmitting(true);
     try {
       const payload = {
@@ -80,8 +78,7 @@ export default function Contact() {
         files: undefined,
         locale,
       };
-      const res = await apiClient.submitForm(payload);
-      setSubmitSuccess(res.id);
+      await apiClient.submitForm(payload);
       reset({
         email: "",
         phone: "",
@@ -115,7 +112,7 @@ export default function Contact() {
               </span>
               <div className={styles.infoText}>
                 <a href="tel:+380505115810" className={styles.phoneTitle}>
-                  +380505115810
+                  050 511 5810
                 </a>
                 <p className={styles.phoneSub}>Телефонуйте 08:00 - 20:00</p>
               </div>
@@ -234,11 +231,6 @@ export default function Contact() {
               {submitError && (
                 <p className={styles.note} style={{ color: "#d00" }}>
                   {submitError}
-                </p>
-              )}
-              {submitSuccess && (
-                <p className={styles.note} style={{ color: "#0a513d" }}>
-                  Дякуємо! Заявка прийнята (ID: {submitSuccess}).
                 </p>
               )}
             </div>

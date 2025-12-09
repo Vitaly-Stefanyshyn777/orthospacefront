@@ -85,12 +85,14 @@
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .btnPrimary {
   background: #ffffff;
   color: #1a2b3d;
   border: none;
+  text-decoration: none;
 }
 
 .btnPrimary:hover {
@@ -151,7 +153,7 @@
   .hero {
     flex-direction: column;
     background: transparent;
-    padding: mvw(0) mvw(20) mvw(0) mvw(20);
+    padding: mvw(0);
     min-height: auto;
   }
 

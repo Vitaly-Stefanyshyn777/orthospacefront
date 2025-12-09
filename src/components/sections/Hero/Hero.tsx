@@ -26,14 +26,19 @@ export default function Hero() {
             </div>
 
             <div className={styles.actions}>
-              <button className={styles.btnPrimary}>
+              <a
+                href="https://cliniccards.com/booking/J9oUok9feahjYFJ2hRfuXDCRwAGBbBW8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnPrimary}
+              >
                 <CalendarIcon />
                 <span>Записатися на прийом</span>
-              </button>
-              <button className={styles.btnSecondary}>
+              </a>
+              <a href="tel:+380505115810" className={styles.btnSecondary}>
                 <PhoneIcon />
                 <span>Зв'язатися з нами</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>

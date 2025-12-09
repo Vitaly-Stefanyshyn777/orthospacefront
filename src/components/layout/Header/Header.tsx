@@ -38,14 +38,19 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <button className={styles.btnCall}>
+          <a href="tel:+380505115810" className={styles.btnCall}>
             <PhoneIcon />
             <span>Подзвонити</span>
-          </button>
-          <button className={styles.btnAppointment}>
+          </a>
+          <a
+            href="https://cliniccards.com/booking/J9oUok9feahjYFJ2hRfuXDCRwAGBbBW8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.btnAppointment}
+          >
             <CalendarIcon />
             <span>Записатися</span>
-          </button>
+          </a>
         </div>
       </div>
     </header>
