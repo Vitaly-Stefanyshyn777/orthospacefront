@@ -1,5 +1,5 @@
 .section {
-  padding: 40px 106px;
+  padding: 0 106px;
   margin: 0 auto;
   background: linear-gradient(
     0deg,
@@ -475,7 +475,7 @@
 
 @media (max-width: 1400px) {
   .section {
-    padding: 40px 60px;
+    padding: 0 60px;
     max-width: 100%;
     border-radius: 40px;
   }
@@ -483,14 +483,14 @@
 
 @media (max-width: 1200px) {
   .section {
-    padding: 40px 40px;
+    padding: 0 40px;
     min-height: auto;
   }
 }
 
 @media (max-width: 1000px) {
   .section {
-    padding: mvw(60) mvw(20);
+    padding: 0 mvw(20);
     border-radius: mvw(24);
     min-height: auto;
     overflow: visible;

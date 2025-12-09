@@ -6,7 +6,7 @@
   min-height: auto;
   display: flex;
   align-items: center;
-  padding: 100px 80px 80px 80px;
+  padding: 0px 40px 0px 40px;
 }
 
 .container {
@@ -151,7 +151,7 @@
   .hero {
     flex-direction: column;
     background: transparent;
-    padding: mvw(68) mvw(20) mvw(40) mvw(20);
+    padding: mvw(0) mvw(20) mvw(0) mvw(20);
     min-height: auto;
   }
 
