@@ -49,6 +49,15 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.infoItem:hover {
+  opacity: 0.8;
+  transform: translateX(4px);
 }
 
 .icon {
@@ -56,12 +65,19 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
+  transition: transform 0.3s ease;
 }
 
 .infoItem svg {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.infoItem:hover svg,
+.infoItem:hover .icon {
+  transform: scale(1.1);
 }
 
 .infoItem:first-child svg {

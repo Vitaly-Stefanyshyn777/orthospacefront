@@ -111,7 +111,7 @@ export default function Specialists() {
               grabCursor={true}
               centeredSlides={true}
               slidesPerView={isMobile ? 1 : "auto"}
-              spaceBetween={20}
+              spaceBetween={40}
               coverflowEffect={
                 isMobile
                   ? undefined

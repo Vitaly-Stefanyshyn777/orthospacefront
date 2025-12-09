@@ -110,7 +110,7 @@
 
 @media (max-width: 1000px) {
   .specialization {
-    padding: mvw(60) 0;
+    padding: 0;
     background: #ffffff;
   }
 

@@ -50,11 +50,11 @@
 
 .swiperCustom :global(.swiper-wrapper) {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .swiperSlide {
-  width: 345px;
+  width: 414px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +62,7 @@
 }
 
 .swiperCustom :global(.swiper-slide) {
-  width: 345px;
+  width: 414px;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
@@ -72,6 +72,12 @@
   opacity: 1;
   z-index: 2;
   pointer-events: auto;
+  transform: scale(1.2);
+  transform-origin: center top;
+}
+
+.swiperCustom :global(.swiper-slide-active) .card {
+  border-radius: 32px 32px 0 0;
 }
 
 .swiperCustom :global(.swiper-slide-prev),
@@ -83,33 +89,44 @@
 
 @media (min-width: 1024px) {
   .swiperCustom :global(.swiper-slide) {
-    width: 345px;
+    width: 414px;
   }
 
   .swiperCustom :global(.swiper-slide-active) {
     opacity: 1;
+    transform: scale(1.2);
+    transform-origin: center top;
+  }
+
+  .swiperCustom :global(.swiper-slide-active) .card {
+    border-radius: 32px 32px 0 0;
+  }
+
+  .swiperCustom :global(.swiper-slide-active) .imageWrapper {
+    border-radius: 32px 32px 0 0;
   }
 
   .swiperCustom :global(.swiper-slide-prev),
   .swiperCustom :global(.swiper-slide-next) {
     opacity: 0.7;
+    transform: scale(0.9);
   }
 }
 
 .card {
-  width: 345px;
+  width: 414px;
   background: #ffffff;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
   transition: all 0.3s ease;
 }
 
 .imageWrapper {
-  width: 345px;
-  height: 297px;
+  width: 414px;
+  height: 356px;
   overflow: hidden;
   border-radius: 20px 20px 0 0;
   flex-shrink: 0;
@@ -227,8 +244,8 @@
   .card {
     width: 100% !important;
     max-width: 100% !important;
-    border-radius: mvw(20) mvw(20) 0 0;
-    border-radius: mvw(20);
+    border-radius: mvw(20) !important;
+    overflow: hidden;
   }
 
   .imageWrapper {
@@ -241,7 +258,7 @@
   .cardContent {
     padding: mvw(20);
     gap: mvw(12);
-    background: #f9f9f9;
+    /* background: #f9f9f9; */
   }
 
   .name {

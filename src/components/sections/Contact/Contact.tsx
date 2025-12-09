@@ -12,6 +12,8 @@ import {
 } from "@/src/icons/Icons";
 import { apiClient } from "@/api/client";
 import { useMemo, useState } from "react";
+import SecondaryInput from "@/src/components/ui/Button/SliderNav/SecondaryInput";
+import Multiline from "@/src/components/ui/Button/SliderNav/Multiline";
 
 type FormValues = {
   email: string;
@@ -54,7 +56,11 @@ export default function Contact() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<FormValues>();
+
+  const watchedValues = watch();
+  const isFormFilled = watchedValues.email?.trim() && watchedValues.phone?.trim();
 
   const onSubmit = async (data: FormValues) => {
     setSubmitError(null);
@@ -170,51 +176,50 @@ export default function Contact() {
         </div>
         <div className={styles.right}>
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.field}>
-              <input
-                type="email"
-                placeholder="Email"
-                {...register("email", {
-                  required: "Email обов'язковий",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Невірний формат email",
-                  },
-                })}
-              />
-              {errors.email && <span className={styles.err}>*</span>}
-            </div>
-            <div className={styles.field}>
-              <input
-                type="tel"
-                placeholder="Телефон"
-                {...register("phone", {
-                  required: "Телефон обов'язковий",
-                  pattern: {
-                    value: /^[\+]?[0-9\s\-\(\)]{10,}$/,
-                    message: "Невірний формат телефону",
-                  },
-                })}
-              />
-              {errors.phone && <span className={styles.err}>*</span>}
-            </div>
-            <div className={styles.textareaRow}>
-              <textarea
-                rows={4}
-                placeholder="Опишіть свою проблему"
-                {...register("message", {
-                  maxLength: {
-                    value: 500,
-                    message: "Максимум 500 символів",
-                  },
-                })}
-              ></textarea>
-            </div>
+            <SecondaryInput
+              type="email"
+              label="Email"
+              {...register("email", {
+                required: "Email обов'язковий",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Невірний формат email",
+                },
+              })}
+              hasError={!!errors.email}
+              supportingText={errors.email?.message || ""}
+            />
+            <SecondaryInput
+              type="tel"
+              label="Телефон"
+              onlyDigits={false}
+              {...register("phone", {
+                required: "Телефон обов'язковий",
+                pattern: {
+                  value: /^[\+]?[0-9\s\-\(\)]{10,}$/,
+                  message: "Невірний формат телефону",
+                },
+              })}
+              hasError={!!errors.phone}
+              supportingText={errors.phone?.message || ""}
+            />
+            <Multiline
+              label="Опишіть свою проблему"
+              rows={4}
+              {...register("message", {
+                maxLength: {
+                  value: 500,
+                  message: "Максимум 500 символів",
+                },
+              })}
+              hasError={!!errors.message}
+              supportingText={errors.message?.message || ""}
+            />
             <div className={styles.actions}>
               <button
                 type="submit"
-                className={styles.submit}
-                disabled={isSubmitting}
+                className={`${styles.submit} ${!isFormFilled ? styles.submitDisabled : ""}`}
+                disabled={isSubmitting || !isFormFilled}
               >
                 {isSubmitting ? "Відправлення..." : "Залишити за'явку"}
               </button>

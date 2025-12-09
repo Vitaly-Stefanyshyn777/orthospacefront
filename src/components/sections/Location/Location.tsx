@@ -8,16 +8,24 @@ export default function Location() {
       <div className={styles.container}>
         <div className={styles.left}>
           <h2 className={styles.title}>Де нас знайти?</h2>
-          
+
           <p className={styles.description}>
-            У OrthoSpace ви знайдете не просто стоматологію, а команду, яка слухає, підтримує й лікує з турботою.
+            У OrthoSpace ви знайдете не просто стоматологію, а команду, яка
+            слухає, підтримує й лікує з турботою.
           </p>
 
           <div className={styles.info}>
-            <div className={styles.infoItem}>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=49.839664,24.029717"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.infoItem}
+            >
               <LocationIcon className={styles.icon} />
-              <span className={styles.address}>м. Долина, вул. Обліски 115В</span>
-            </div>
+              <span className={styles.address}>
+                м. Долина, вул. Обліски 115В
+              </span>
+            </a>
 
             <div className={styles.infoItem}>
               <PhoneIcon />
@@ -28,7 +36,8 @@ export default function Location() {
           </div>
 
           <p className={styles.text}>
-            Завітайте або напишіть нам у Viber чи Telegram — ми відкриті для вас щодня, щоб подбати про вашу усмішку.
+            Завітайте або напишіть нам у Viber чи Telegram — ми відкриті для вас
+            щодня, щоб подбати про вашу усмішку.
           </p>
 
           <button className={styles.button}>
@@ -56,4 +65,3 @@ export default function Location() {
     </section>
   );
 }
-

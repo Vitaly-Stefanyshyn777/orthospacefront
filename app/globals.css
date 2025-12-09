@@ -95,7 +95,7 @@ a {
 @media (max-width: 1000px) {
   .main-content {
     gap: mvw(60);
-    padding: 60px 0px 60px 0px;
+    padding: mvw(65) 0px mvw(65) 0px;
   }
 }
 

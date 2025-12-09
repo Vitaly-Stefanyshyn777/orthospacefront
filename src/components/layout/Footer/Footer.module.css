@@ -156,14 +156,29 @@
   transition: all 0.3s ease;
 }
 
-.submitButton:hover {
+.submitButton:hover:not(:disabled) {
   background: #0a513d;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.submitButton:active {
+.submitButton:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.submitButton:disabled,
+.submitButtonDisabled {
+  background: #efefef;
+  color: #c7c7c7;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.submitButtonDisabled:hover {
+  background: #efefef;
+  color: #c7c7c7;
+  transform: none;
+  box-shadow: none;
 }
 
 @media (max-width: 1200px) {

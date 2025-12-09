@@ -189,7 +189,7 @@
 
 @media (max-width: 1000px) {
   .gallery {
-    padding: mvw(60) 0;
+    padding: 0;
     overflow: visible;
   }
 

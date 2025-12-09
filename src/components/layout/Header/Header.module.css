@@ -119,7 +119,7 @@
   .btnAppointment {
     padding: mvw(10) mvw(16);
     font-size: mvw(12);
-    border-radius: mvw(6);
+    border-radius: mvw(12);
     gap: mvw(6);
   }
 

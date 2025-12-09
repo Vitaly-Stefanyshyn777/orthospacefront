@@ -2,14 +2,20 @@
 import Image from "next/image";
 import { useState } from "react";
 import styles from './Footer.module.css';
+import SecondaryInput from "@/src/components/ui/Button/SliderNav/SecondaryInput";
+import Multiline from "@/src/components/ui/Button/SliderNav/Multiline";
+import { EmailIcon, NumberIcon } from "@/src/icons/Icons";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
+  const isFormFilled = email.trim() && phone.trim();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormFilled) return;
     // Тут буде логіка відправки форми
     console.log({ email, phone, message });
     setEmail("");
@@ -49,29 +55,30 @@ export default function Footer() {
         <div className={styles.right}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.inputRow}>
-              <input
+              <SecondaryInput
                 type="email"
-                placeholder="Email"
+                label="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={styles.input}
               />
-              <input
+              <SecondaryInput
                 type="tel"
-                placeholder="Телефон"
+                label="Телефон"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className={styles.input}
               />
             </div>
-            <textarea
-              placeholder="Опишіть свою проблему"
+            <Multiline
+              label="Опишіть свою проблему"
+              rows={4}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className={styles.textarea}
-              rows={4}
             />
-            <button type="submit" className={styles.submitButton}>
+            <button
+              type="submit"
+              className={`${styles.submitButton} ${!isFormFilled ? styles.submitButtonDisabled : ""}`}
+              disabled={!isFormFilled}
+            >
               Залишити заявку
             </button>
           </form>
