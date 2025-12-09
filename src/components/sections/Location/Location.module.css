@@ -20,7 +20,7 @@
   background: #ffffff;
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
 }
 
 .title {
@@ -178,7 +178,7 @@
   }
 
   .left {
-    padding: mvw(24);
+    padding: mvw(0);
     border-radius: mvw(20);
     gap: mvw(20);
   }
@@ -198,6 +198,7 @@
 
   .infoItem {
     gap: mvw(12);
+    align-items: flex-end;
   }
 
   .infoItem svg {
@@ -215,7 +216,8 @@
     padding: mvw(14) mvw(24);
     font-size: mvw(16);
     border-radius: mvw(12);
-    margin-top: mvw(8);
+    margin-top: mvw(0);
+    gap: mvw(8);
   }
 
   .button svg {
@@ -233,4 +235,3 @@
     border-radius: mvw(16);
   }
 }
-

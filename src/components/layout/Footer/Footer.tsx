@@ -22,7 +22,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.left}>
           <div className={styles.logoWrapper}>
-            <Image src="/Logo.svg" alt="Logo" width={60} height={60} />
+            <Image src="/Logo.png" alt="Logo" width={60} height={60} />
             <div className={styles.logoText}>
               <h2 className={styles.logoTitle}>OrthoSpace</h2>
               <p className={styles.logoSubtitle}>Romaniv Dental Clinic</p>
@@ -32,13 +32,17 @@ export default function Footer() {
 
         <div className={styles.center}>
           <nav className={styles.nav}>
-            <a href="#" className={styles.navLink}>Головна</a>
-            <a href="#about" className={styles.navLink}>Про клініку</a>
-            <a href="#services" className={styles.navLink}>Послуги</a>
-            <a href="#whyus" className={styles.navLink}>Чому ми</a>
-            <a href="#specialists" className={styles.navLink}>Спеціалісти</a>
-            <a href="#contact" className={styles.navLink}>Контакти</a>
-            <a href="#reviews" className={styles.navLink}>Відгуки</a>
+            <div className={styles.navColumn}>
+              <a href="#" className={styles.navLink}>Головна</a>
+              <a href="#about" className={styles.navLink}>Про клініку</a>
+              <a href="#services" className={styles.navLink}>Послуги</a>
+            </div>
+            <div className={styles.navColumn}>
+              <a href="#whyus" className={styles.navLink}>Чому ми</a>
+              <a href="#specialists" className={styles.navLink}>Спеціалісти</a>
+              <a href="#contact" className={styles.navLink}>Контакти</a>
+              <a href="#reviews" className={styles.navLink}>Відгуки</a>
+            </div>
           </nav>
         </div>
 

@@ -22,7 +22,7 @@ export default function About() {
 
           <div className={styles.imageWrapper}>
             <Image
-              src="/img-2.png"
+              src="/kamal-hoseinianzade-SjybLeQF6QY-unsplash.jpg"
               alt="Про клініку"
               width={703}
               height={290}

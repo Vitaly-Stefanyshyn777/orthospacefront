@@ -3,25 +3,35 @@
   background-color: #1a2b3d;
   color: #ffffff;
   padding: 60px 80px;
-  border-radius: 20px 20px 0 0;
+  border-radius: 50px 50px 0 0;
+  position: relative;
 }
 
 .container {
   max-width: 1640px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 60px;
   align-items: flex-start;
 }
 
 .left {
-  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .logoWrapper {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 16px;
+}
+
+.logoWrapper img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .logoText {
@@ -31,24 +41,39 @@
 }
 
 .logoTitle {
-  font-size: 24px;
+  font-family: var(--second-family);
+  font-size: 32px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
+  line-height: 1.2;
 }
 
 .logoSubtitle {
-  font-size: 14px;
+  font-family: var(--font-family);
+  font-size: 16px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
+  line-height: 1.4;
 }
 
 .center {
-  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 40px;
+}
+
+.navColumn {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -56,10 +81,12 @@
 
 .navLink {
   color: #ffffff;
+  font-family: var(--font-family);
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .navLink:hover {
@@ -67,7 +94,8 @@
 }
 
 .right {
-  flex: 1;
+  flex: 0 0 auto;
+  min-width: 300px;
   max-width: 400px;
 }
 
@@ -141,37 +169,104 @@
 @media (max-width: 1200px) {
   .footer {
     padding: 40px 40px;
+    border-radius: 40px 40px 0 0;
   }
 
   .container {
+    grid-template-columns: auto 1fr;
     gap: 40px;
   }
-}
 
-@media (max-width: 768px) {
-  .footer {
-    padding: 40px 20px;
-    border-radius: 0;
-  }
-
-  .container {
-    flex-direction: column;
+  .nav {
     gap: 30px;
   }
 
   .right {
+    grid-column: 1 / -1;
     max-width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .footer {
+    padding: mvw(40) mvw(20);
+    border-radius: mvw(24) mvw(24) 0 0;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: mvw(32);
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .logoWrapper {
+    gap: mvw(12);
+  }
+
+  .logoWrapper img {
+    width: mvw(50);
+    height: mvw(50);
+  }
+
+  .logoTitle {
+    font-size: mvw(24);
+  }
+
+  .logoSubtitle {
+    font-size: mvw(14);
+  }
+
+  .center {
+    justify-content: flex-start;
+  }
+
+  .nav {
+    align-items: flex-start;
+    gap: mvw(24);
+    flex-wrap: wrap;
+  }
+
+  .navColumn {
+    gap: mvw(12);
+  }
+
+  .navLink {
+    font-size: mvw(16);
+  }
+
+  .right {
+    grid-column: 1;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .form {
+    gap: mvw(12);
   }
 
   .inputRow {
     flex-direction: column;
+    gap: mvw(12);
   }
 
-  .nav {
-    gap: 12px;
+  .input {
+    padding: mvw(12) mvw(16);
+    font-size: mvw(14);
+    border-radius: mvw(8);
   }
 
-  .navLink {
-    font-size: 14px;
+  .textarea {
+    padding: mvw(12) mvw(16);
+    font-size: mvw(14);
+    border-radius: mvw(8);
+  }
+
+  .submitButton {
+    padding: mvw(14) mvw(24);
+    font-size: mvw(16);
+    border-radius: mvw(12);
   }
 }

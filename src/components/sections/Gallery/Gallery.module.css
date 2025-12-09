@@ -1,6 +1,8 @@
 .gallery {
   padding: 80px 0;
   background: #ffffff;
+  position: relative;
+  z-index: 1;
 }
 
 .container {
@@ -188,12 +190,13 @@
 @media (max-width: 1000px) {
   .gallery {
     padding: mvw(60) 0;
+    overflow: visible;
   }
 
   .container {
     padding: 0 mvw(20);
     gap: mvw(30);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .title {

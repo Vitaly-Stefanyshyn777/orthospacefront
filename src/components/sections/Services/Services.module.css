@@ -197,67 +197,111 @@
 
   .container {
     padding: 0 mvw(20);
-    gap: mvw(30);
+    gap: mvw(24);
   }
 
   .header {
-    gap: mvw(12);
+    gap: mvw(16);
+    align-items: center;
   }
 
   .title {
-    font-size: mvw(28);
+    font-size: mvw(32);
+    font-weight: 700;
+    text-align: center;
   }
 
   .description {
     font-size: mvw(16);
+    text-align: center;
+    line-height: 1.5;
+    max-width: 100%;
   }
 
   .servicesList {
-    gap: mvw(16);
+    gap: mvw(12);
+    max-width: 100%;
   }
 
   .serviceItem {
-    border-radius: mvw(40);
+    border: 1px solid #e5e5e5;
+    border-radius: mvw(16);
+    background: #ffffff;
   }
 
   .serviceHeader {
-    padding: mvw(20) mvw(30);
-    gap: mvw(20);
-    border-radius: mvw(40);
-  }
-
-  .subServicesContainer {
-    border-bottom-left-radius: mvw(40);
-    border-bottom-right-radius: mvw(40);
+    padding: mvw(16) mvw(20);
+    gap: mvw(16);
+    border-radius: mvw(16);
   }
 
   .serviceNumber {
-    font-size: mvw(32);
-    min-width: mvw(40);
+    font-size: mvw(40);
+    font-weight: 400;
+    color: #9ca3af;
+    min-width: mvw(50);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding-left: mvw(8);
+  }
+
+  .serviceNumber::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: mvw(50);
+    height: mvw(50);
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .serviceInfo {
+    gap: mvw(4);
+    flex: 1;
   }
 
   .serviceName {
-    font-size: mvw(18);
+    font-size: mvw(16);
+    font-weight: 600;
+    color: #151515;
+    text-transform: none;
   }
 
   .servicePrice {
     font-size: mvw(14);
-  }
-
-  .downloadIcon {
-    width: mvw(49);
-    height: mvw(46);
-    margin-right: mvw(12);
+    font-weight: 400;
+    color: #9ca3af;
+    text-transform: none;
   }
 
   .arrow {
-    width: mvw(20);
-    height: mvw(20);
+    width: mvw(32);
+    height: mvw(32);
+    border: 1px solid #151515;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .arrow svg {
+    width: mvw(12);
+    height: mvw(12);
+  }
+
+  .arrow svg path {
+    fill: #151515;
   }
 
   .subServicesContainer {
     padding: 0 mvw(20) mvw(16);
     max-height: mvw(300);
+    border-bottom-left-radius: mvw(16);
+    border-bottom-right-radius: mvw(16);
   }
 
   .subServicesList {
@@ -276,5 +320,11 @@
 
   .subServicePrice {
     font-size: mvw(16);
+  }
+
+  .downloadIcon {
+    width: mvw(49);
+    height: mvw(46);
+    margin-right: mvw(12);
   }
 }

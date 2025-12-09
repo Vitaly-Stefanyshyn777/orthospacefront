@@ -168,17 +168,15 @@ export default function Specialists() {
               ))}
             </Swiper>
           </div>
-          {isMobile && (
-            <SliderNav
-              activeIndex={swiperIndex}
-              dots={specialists.length}
-              onPrev={handlePrev}
-              onNext={handleNext}
-              onDotClick={handleDotClick}
-              buttonBgColor="#ffffff"
-              containerClassName={styles.sliderNavWrapper}
-            />
-          )}
+          <SliderNav
+            activeIndex={swiperIndex}
+            dots={specialists.length}
+            onPrev={handlePrev}
+            onNext={handleNext}
+            onDotClick={handleDotClick}
+            buttonBgColor={isMobile ? "#ffffff" : "#101c2b"}
+            containerClassName={styles.sliderNavWrapper}
+          />
         </div>
       </div>
     </section>

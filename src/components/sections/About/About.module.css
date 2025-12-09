@@ -73,42 +73,54 @@
 
 @media (max-width: 1000px) {
   .about {
-    padding: mvw(60) 0;
+    padding: mvw(40) 0 mvw(60) 0;
     background: #ffffff;
   }
 
   .container {
     padding: 0 mvw(20);
-    gap: mvw(30);
+    max-width: 100%;
+    gap: mvw(24);
+    align-items: stretch;
   }
 
   .title {
-    font-size: mvw(28);
+    font-size: mvw(32);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: mvw(8);
   }
 
   .content {
     flex-direction: column;
-    gap: mvw(30);
+    gap: mvw(24);
+    align-items: stretch;
   }
 
   .textBlock {
-    gap: mvw(20);
+    gap: mvw(16);
+    width: 100%;
   }
 
   .paragraph {
     font-size: mvw(16);
-    line-height: 1.6;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
   }
 
   .imageWrapper {
     width: 100%;
     height: auto;
-    width: mvw(381);
-    height: mvw(227);
     border-radius: mvw(16);
+    overflow: hidden;
+    margin-top: mvw(8);
   }
 
   .image {
+    width: 100%;
+    height: auto;
     border-radius: mvw(16);
+    object-fit: cover;
   }
 }

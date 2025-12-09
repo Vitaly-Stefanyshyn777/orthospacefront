@@ -130,32 +130,17 @@ export default function WhyUs() {
           </div>
         ) : (
           <div className={styles.featuresGrid}>
-            <div className={styles.featuresRow}>
-              {features.slice(0, 3).map((feature) => (
-                <div
-                  key={feature.id}
-                  className={`${styles.featureCard} ${styles[feature.variant]}`}
-                >
-                  <h3 className={styles.featureTitle}>{feature.title}</h3>
-                  <p className={styles.featureDescription}>
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className={styles.featuresRow}>
-              {features.slice(3, 6).map((feature) => (
-                <div
-                  key={feature.id}
-                  className={`${styles.featureCard} ${styles[feature.variant]}`}
-                >
-                  <h3 className={styles.featureTitle}>{feature.title}</h3>
-                  <p className={styles.featureDescription}>
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                className={`${styles.featureCard} ${styles[feature.variant]}`}
+              >
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDescription}>
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
         )}
       </div>
