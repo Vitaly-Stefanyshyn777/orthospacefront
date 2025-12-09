@@ -40,10 +40,15 @@ export default function Location() {
             щодня, щоб подбати про вашу усмішку.
           </p>
 
-          <button className={styles.button}>
+          <a
+            href="https://cliniccards.com/booking/J9oUok9feahjYFJ2hRfuXDCRwAGBbBW8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.button}
+          >
             <CalendarIcon />
             <span>Записатись на прийом</span>
-          </button>
+          </a>
         </div>
 
         <div className={styles.right}>

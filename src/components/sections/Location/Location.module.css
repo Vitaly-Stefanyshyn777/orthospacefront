@@ -130,6 +130,7 @@
   transition: all 0.3s ease;
   width: fit-content;
   margin-top: 8px;
+  text-decoration: none;
 }
 
 .button:hover {

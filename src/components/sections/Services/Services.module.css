@@ -338,4 +338,10 @@
     height: mvw(46);
     margin-right: mvw(12);
   }
+
+  .toothIcon {
+    flex-shrink: 0;
+    width: mvw(26);
+    height: mvw(26);
+  }
 }
