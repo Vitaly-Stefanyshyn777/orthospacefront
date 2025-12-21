@@ -45,7 +45,7 @@ export default function Hero() {
 
         <div className={styles.imageWrapper}>
           <Image
-            src="/Container.jpg"
+            src="/IMG_8886.JPG"
             alt="OrthoSpace"
             width={565}
             height={798}

@@ -89,13 +89,13 @@ a {
   display: flex;
   flex-direction: column;
   gap: 100px;
-  padding: 100px 0px 100px 0px;
+  padding: 120px 0px 100px 0px;
 }
 
 @media (max-width: 1000px) {
   .main-content {
     gap: mvw(60);
-    padding: mvw(65) 0px mvw(65) 0px;
+    padding: mvw(85) 0px mvw(65) 0px;
   }
 }
 

@@ -4,7 +4,7 @@
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1580px;
   margin: 0 auto;
 
   display: flex;
@@ -25,6 +25,8 @@
   display: flex;
   align-items: flex-start;
   gap: 60px;
+  justify-content: center;
+  align-items: center;
 }
 
 .textBlock {
@@ -37,16 +39,17 @@
 .paragraph {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 24px;
+  font-size: 30px;
   color: #151515;
 }
 
 .imageWrapper {
   flex-shrink: 0;
-  width: 703px;
+  width: 803px;
   /* height: 344px; */
   border-radius: 16px;
   overflow: hidden;
+  height: 544px;
 }
 
 .image {
