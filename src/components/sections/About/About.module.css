@@ -125,5 +125,6 @@
     height: auto;
     border-radius: mvw(16);
     object-fit: cover;
+    height: mvw(200);
   }
 }
