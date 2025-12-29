@@ -11,9 +11,9 @@ export const PhoneIcon = () => (
     <path
       d="M8.55499 10.3786C8.69268 10.4419 8.84779 10.4563 8.99479 10.4196C9.14178 10.3829 9.27188 10.2972 9.36366 10.1766L9.60032 9.86663C9.72452 9.70103 9.88557 9.56663 10.0707 9.47406C10.2558 9.38149 10.46 9.33329 10.667 9.33329H12.667C13.0206 9.33329 13.3598 9.47377 13.6098 9.72382C13.8598 9.97387 14.0003 10.313 14.0003 10.6666V12.6666C14.0003 13.0202 13.8598 13.3594 13.6098 13.6094C13.3598 13.8595 13.0206 14 12.667 14C9.48439 14 6.43215 12.7357 4.18171 10.4852C1.93127 8.2348 0.666992 5.18256 0.666992 1.99996C0.666992 1.64634 0.807468 1.3072 1.05752 1.05715C1.30756 0.807102 1.6467 0.666626 2.00033 0.666626H4.00033C4.35395 0.666626 4.69309 0.807102 4.94313 1.05715C5.19318 1.3072 5.33366 1.64634 5.33366 1.99996V3.99996C5.33366 4.20695 5.28547 4.4111 5.19289 4.59624C5.10032 4.78138 4.96592 4.94243 4.80033 5.06663L4.48833 5.30063C4.36594 5.39408 4.27967 5.52702 4.24419 5.67686C4.2087 5.8267 4.22618 5.98421 4.29366 6.12263C5.20478 7.9732 6.70327 9.46982 8.55499 10.3786Z"
       stroke="#101C2B"
-      stroke-width="1.33333"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -29,30 +29,30 @@ export const CalendarIcon = () => (
     <path
       d="M5.33301 1.33337V4.00004"
       stroke="white"
-      stroke-width="1.33333"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M10.667 1.33337V4.00004"
       stroke="white"
-      stroke-width="1.33333"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M12.6667 2.66663H3.33333C2.59695 2.66663 2 3.26358 2 3.99996V13.3333C2 14.0697 2.59695 14.6666 3.33333 14.6666H12.6667C13.403 14.6666 14 14.0697 14 13.3333V3.99996C14 3.26358 13.403 2.66663 12.6667 2.66663Z"
       stroke="white"
-      stroke-width="1.33333"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M2 6.66663H14"
       stroke="white"
-      stroke-width="1.33333"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

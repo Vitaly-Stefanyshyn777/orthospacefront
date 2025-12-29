@@ -106,6 +106,17 @@
   color: #0a513d;
 }
 
+.messengerLink {
+  color: #0a513d;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.messengerLink:hover {
+  color: #0d6b4f;
+}
+
 .text {
   font-size: 16px;
   font-weight: 400;
@@ -225,6 +236,10 @@
 
   .address,
   .phone {
+    font-size: mvw(14);
+  }
+
+  .messengerLink {
     font-size: mvw(14);
   }
 

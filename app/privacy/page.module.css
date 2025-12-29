@@ -1,0 +1,170 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: #1a2b3d;
+
+  min-height: 100vh;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+
+  padding: 3rem;
+  border: 1px solid rgba(0, 212, 170, 0.1);
+}
+
+.title {
+  color: #1a2b3d;
+  border-bottom: 3px solid #00d4aa;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  font-family: var(--second-family);
+}
+
+.sectionTitle {
+  color: #1a2b3d;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-left: 4px solid #00d4aa;
+  padding-left: 1.5rem;
+  font-weight: 600;
+  font-family: var(--second-family);
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section p {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  color: #4a5568;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.section ul {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+  background: rgba(0, 212, 170, 0.02);
+  padding: 1rem 1rem 1rem 2.5rem;
+  border-radius: 8px;
+  border-left: 3px solid #00d4aa;
+}
+
+.section li {
+  margin-bottom: 0.75rem;
+  color: #4a5568;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.section strong {
+  color: #1a2b3d;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.lastUpdated {
+  background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 3rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 20px rgba(0, 212, 170, 0.2);
+}
+
+/* Адаптивність для планшетів */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+
+  .content {
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    padding-left: 1rem;
+  }
+
+  .section p {
+    font-size: 1rem;
+  }
+
+  .section li {
+    font-size: 1rem;
+  }
+
+  .lastUpdated {
+    padding: 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+
+  .content {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    padding-left: 0.8rem;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .section ul {
+    padding: 0.8rem 0.8rem 0.8rem 2rem;
+  }
+
+  .section li {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .lastUpdated {
+    padding: 1rem;
+    font-size: 0.95rem;
+    margin-top: 2rem;
+  }
+}

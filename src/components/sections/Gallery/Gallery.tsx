@@ -8,8 +8,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import styles from "./Gallery.module.css";
 import SliderNav from "@/src/components/ui/Button/SliderNav/SliderNavActions";
+import {
+  useGeneralGallery,
+  useBeforeAfterGallery,
+} from "@/src/hooks/useGallery";
 
-const galleryImages = [
+// Статичні fallback дані для галереї - 7 зображень
+const fallbackGalleryImages = [
   {
     id: 1,
     src: "/Frame38.png",
@@ -61,10 +66,105 @@ const galleryImages = [
   },
 ];
 
+// Тимчасові тестові дані з API (поки API не працює) - використовуємо локальні зображення з правильними розмірами
+const mockApiImages = [
+  {
+    id: 101,
+    image: "/Frame38.png", // 519x270 для image1
+    title: "Beautiful dental clinic interior",
+    description: "Modern dental office with comfortable chairs",
+    albumId: 1,
+    width: 519,
+    height: 270,
+  },
+  {
+    id: 102,
+    image: "/Frame39.png", // 341x270 для image2
+    title: "Professional dental equipment",
+    description: "State-of-the-art dental technology",
+    albumId: 1,
+    width: 341,
+    height: 270,
+  },
+  {
+    id: 103,
+    image: "/Frame40.png", // 430x553 для image3
+    title: "Before and After treatment",
+    description: "Patient transformation results",
+    albumId: 2,
+    width: 430,
+    height: 553,
+  },
+  {
+    id: 104,
+    image: "/Frame41.png", // 341x554 для image4
+    title: "Dental consultation room",
+    description: "Comfortable consultation space",
+    albumId: 1,
+    width: 341,
+    height: 554,
+  },
+];
+
 export default function Gallery() {
   const [isMobile, setIsMobile] = useState(false);
   const [swiperIndex, setSwiperIndex] = useState(0);
   const swiperRef = useRef<any>(null);
+
+  // Отримання даних через нову архітектуру API
+  const { photos: generalPhotos, loading: generalLoading } =
+    useGeneralGallery();
+  const { photos: beforeAfterPhotos, loading: beforeAfterLoading } =
+    useBeforeAfterGallery();
+
+  const loading = generalLoading || beforeAfterLoading;
+
+  // Підготовка зображень для відображення
+  const allPhotos = [...generalPhotos, ...beforeAfterPhotos];
+
+  // Обробляємо фото - API клієнт вже обробив URLs
+  const processedPhotos = allPhotos;
+
+  // Перевіряємо, чи є валідні зображення після обробки
+  const validApiImages = processedPhotos.filter(
+    (photo) => photo.image && photo.image.trim() !== ""
+  );
+
+  // Якщо API повертає пусті зображення навіть після обробки, використовуємо mock дані
+  const useMockData = validApiImages.length === 0;
+
+  const apiImages = useMockData
+    ? mockApiImages.map((photo, index) => ({
+        id: photo.id,
+        src: photo.image,
+        alt: photo.title || photo.description || `Gallery image ${index + 1}`,
+        width: photo.width || 519,
+        height: photo.height || 270,
+      }))
+    : validApiImages.map((photo, index) => ({
+        id: photo.id,
+        src: photo.image,
+        alt: photo.title || photo.description || `Gallery image ${index + 1}`,
+        width: photo.width || 519,
+        height: photo.height || 270,
+      }));
+
+  // Використовуємо статичні fallback зображення (7 зображень)
+  const galleryImages = fallbackGalleryImages;
+
+  // Консоль логи для перевірки відображення
+  console.log("🎨 Gallery Images Display Check:", {
+    totalImages: galleryImages.length,
+    usingStaticFallback: true,
+    images: galleryImages.map((img, index) => ({
+      slot: index + 1,
+      id: img.id,
+      src: img.src,
+      alt: img.alt,
+      width: img.width,
+      height: img.height,
+    })),
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -104,6 +204,7 @@ export default function Gallery() {
               modules={[Navigation]}
               slidesPerView={1}
               spaceBetween={20}
+              loop={galleryImages.length >= 3} // Завжди true для 3 зображень
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
               }}
@@ -142,76 +243,90 @@ export default function Gallery() {
           <div className={styles.grid}>
             <div className={styles.leftSection}>
               <div className={styles.topRow}>
-                <div className={styles.image1}>
-                  <Image
-                    src="/Frame38.png"
-                    alt="Gallery image 1"
-                    width={519}
-                    height={270}
-                    className={styles.image}
-                  />
-                </div>
-                <div className={styles.image2}>
-                  <Image
-                    src="/Frame39.png"
-                    alt="Gallery image 2"
-                    width={341}
-                    height={270}
-                    className={styles.image}
-                  />
-                </div>
+                {galleryImages[0] && (
+                  <div className={styles.image1}>
+                    <Image
+                      src={galleryImages[0].src}
+                      alt={galleryImages[0].alt}
+                      width={galleryImages[0].width}
+                      height={galleryImages[0].height}
+                      className={styles.image}
+                    />
+                  </div>
+                )}
+                {galleryImages[1] && (
+                  <div className={styles.image2}>
+                    <Image
+                      src={galleryImages[1].src}
+                      alt={galleryImages[1].alt}
+                      width={galleryImages[1].width}
+                      height={galleryImages[1].height}
+                      className={styles.image}
+                    />
+                  </div>
+                )}
               </div>
               <div className={styles.bottomRow}>
-                <div className={styles.image4}>
-                  <Image
-                    src="/Frame41.png"
-                    alt="Gallery image 4"
-                    width={341}
-                    height={554}
-                    className={styles.image}
-                  />
-                </div>
+                {galleryImages[3] && (
+                  <div className={styles.image4}>
+                    <Image
+                      src={galleryImages[3].src}
+                      alt={galleryImages[3].alt}
+                      width={galleryImages[3].width}
+                      height={galleryImages[3].height}
+                      className={styles.image}
+                    />
+                  </div>
+                )}
                 <div className={styles.column}>
-                  <div className={styles.image5}>
-                    <Image
-                      src="/Frame42.png"
-                      alt="Gallery image 5"
-                      width={519}
-                      height={270}
-                      className={styles.image}
-                    />
-                  </div>
-                  <div className={styles.image6}>
-                    <Image
-                      src="/Frame44.png"
-                      alt="Gallery image 6"
-                      width={519}
-                      height={270}
-                      className={styles.image}
-                    />
-                  </div>
+                  {galleryImages[4] && (
+                    <div className={styles.image5}>
+                      <Image
+                        src={galleryImages[4].src}
+                        alt={galleryImages[4].alt}
+                        width={galleryImages[4].width}
+                        height={galleryImages[4].height}
+                        className={styles.image}
+                      />
+                    </div>
+                  )}
+                  {galleryImages[5] && (
+                    <div className={styles.image6}>
+                      <Image
+                        src={galleryImages[5].src}
+                        alt={galleryImages[5].alt}
+                        width={galleryImages[5].width}
+                        height={galleryImages[5].height}
+                        className={styles.image}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
             <div className={styles.rightSection}>
-              <div className={styles.image3}>
-                <Image
-                  src="/Frame40.png"
-                  alt="Gallery image 3"
-                  width={430}
-                  height={553}
-                  className={styles.image}
-                />
-              </div>
-              <div className={styles.image7}>
-                <Image
-                  src="/Frame38.png"
-                  alt="Gallery image 7"
-                  width={430}
-                  height={270}
-                  className={styles.image}
-                />
-              </div>
+              {galleryImages[2] && (
+                <div className={styles.image3}>
+                  <Image
+                    src={galleryImages[2].src}
+                    alt={galleryImages[2].alt}
+                    width={galleryImages[2].width}
+                    height={galleryImages[2].height}
+                    className={styles.image}
+                  />
+                </div>
+              )}
+              {galleryImages[6] && (
+                <div className={styles.image7}>
+                  <Image
+                    src={galleryImages[6].src}
+                    alt={galleryImages[6].alt}
+                    width={galleryImages[6].width}
+                    height={galleryImages[6].height}
+                    className={styles.image}
+                  />
+                </div>
+              )}
             </div>
           </div>
         )}

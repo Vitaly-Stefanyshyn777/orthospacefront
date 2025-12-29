@@ -1,6 +1,5 @@
 "use client";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import styles from "./Contact.module.css";
 import {
   NumberIcon,
@@ -11,9 +10,50 @@ import {
   TimeIcon,
 } from "@/src/icons/Icons";
 import { apiClient } from "@/api/client";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import SecondaryInput from "@/src/components/ui/Button/SliderNav/SecondaryInput";
 import Multiline from "@/src/components/ui/Button/SliderNav/Multiline";
+
+// Типи для контактних даних відповідно до API
+interface SocialLinks {
+  facebook?: string;
+  instagram?: string;
+  telegram?: string;
+  viber?: string;
+}
+
+interface WorkHours {
+  weekdays: string;
+  weekdayHours: string;
+  weekend: string;
+  weekendHours: string;
+}
+
+interface ContactInfo {
+  title: string;
+  description: string;
+  phone: string;
+  workHours: WorkHours;
+  socialLinks: SocialLinks[];
+}
+
+interface LocationInfo {
+  title: string;
+  description: string;
+  address: string;
+  phone: string;
+  viberLink: string;
+  telegramLink: string;
+}
+
+interface ContactsData {
+  contactInfo: ContactInfo;
+  locationInfo: LocationInfo;
+}
+
+// Конфігурація бекенду
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3002";
 
 type FormValues = {
   email: string;
@@ -24,6 +64,11 @@ type FormValues = {
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Стан для контактних даних
+  const [contactsData, setContactsData] = useState<ContactsData | null>(null);
+  const [contactsLoading, setContactsLoading] = useState(true);
+  const [contactsError, setContactsError] = useState<string | null>(null);
 
   // Визначаємо мову інтерфейсу як locale для бекенду
   const locale = useMemo(() => {
@@ -50,6 +95,83 @@ export default function Contact() {
     });
     return Object.keys(obj).length ? obj : undefined;
   }, []);
+
+  // Функція отримання контактних даних з API
+  const fetchContacts = async () => {
+    try {
+      setContactsLoading(true);
+      setContactsError(null);
+
+      const token = localStorage.getItem("authToken");
+      console.log("🚀 Завантаження контактних даних...");
+      console.log("📡 URL:", `${BACKEND_URL}/api/v1/public/contacts`);
+      console.log("🔑 Token:", token ? "Присутній" : "Відсутній");
+
+      // Отримання даних через API proxy
+      const response = await fetch("/api/contacts", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "", // JWT токен для авторизації
+        },
+      });
+
+      console.log("📨 Статус відповіді:", response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("✅ Отримано контактні дані:", data);
+
+      // Зберігаємо дані в стан компонента
+      setContactsData(data);
+    } catch (err) {
+      console.error("❌ Помилка завантаження контактів:", err);
+      setContactsError(err instanceof Error ? err.message : "Невідома помилка");
+
+      // Fallback дані при помилці
+      const fallbackData: ContactsData = {
+        contactInfo: {
+          title: "Зв'яжіться з нами",
+          description:
+            "Залишіть нам заявку, і наш спеціаліст зв'яжеться з вами протягом години, щоб обговорити деталі та провести безкоштовний огляд.",
+          phone: "050 511 5810",
+          workHours: {
+            weekdays: "Пн-Пт",
+            weekdayHours: "08:00 - 20:00",
+            weekend: "Сб-Нд",
+            weekendHours: "09:00 - 18:00",
+          },
+          socialLinks: [
+            {
+              facebook: "https://facebook.com/orthospace",
+              instagram: "https://instagram.com/orthospace",
+              telegram: "https://t.me/orthospace",
+              viber: "viber://chat?number=%2B380505115810",
+            },
+          ],
+        },
+        locationInfo: {
+          title: "Де нас знайти?",
+          description:
+            "У OrthoSpace ви знайдете сучасну стоматологічну клініку з комфортними умовами лікування та професійним підходом до кожного пацієнта.",
+          address: "м. Долина, вул. Обліски 115В",
+          phone: "050 511 5810",
+          viberLink: "viber://chat?number=%2B380505115810",
+          telegramLink: "https://t.me/orthospace",
+        },
+      };
+      setContactsData(fallbackData);
+    } finally {
+      setContactsLoading(false);
+    }
+  };
+
+  // Автоматичне завантаження при ініціалізації
+  useEffect(() => {
+    fetchContacts(); // Викликається при завантаженні компонента
+  }, []);
   const {
     register,
     handleSubmit,
@@ -59,7 +181,12 @@ export default function Contact() {
   } = useForm<FormValues>();
 
   const watchedValues = watch();
-  const isFormFilled = watchedValues.email?.trim() && watchedValues.phone?.trim();
+  const isFormFilled =
+    watchedValues.email?.trim() && watchedValues.phone?.trim();
+
+  console.log("🛠️ Contact component: contactsData:", contactsData);
+  console.log("🛠️ Contact component: contactsLoading:", contactsLoading);
+  console.log("🛠️ Contact component: contactsError:", contactsError);
 
   const onSubmit = async (data: FormValues) => {
     setSubmitError(null);
@@ -100,10 +227,12 @@ export default function Contact() {
           <h2 className={styles.title}>Контакти</h2>
 
           <div className={styles.contactSection}>
-            <h3 className={styles.sectionTitle}>Зв'яжіться з нами</h3>
+            <h3 className={styles.sectionTitle}>
+              {contactsData?.contactInfo.title || "Зв'яжіться з нами"}
+            </h3>
             <p className={styles.sectionDescription}>
-              Залишіть нам заявку, і наш спеціаліст зв'яжеться з вами протягом
-              години, щоб обговорити деталі та провести безкоштовний огляд.
+              {contactsData?.contactInfo.description ||
+                "Залишіть нам заявку, і наш спеціаліст зв'яжеться з вами протягом години, щоб обговорити деталі та провести безкоштовний огляд."}
             </p>
 
             <div className={styles.infoItem}>
@@ -111,10 +240,20 @@ export default function Contact() {
                 <NumberIcon />
               </span>
               <div className={styles.infoText}>
-                <a href="tel:+380505115810" className={styles.phoneTitle}>
-                  050 511 5810
+                <a
+                  href={`tel:+38${
+                    contactsData?.contactInfo.phone?.replace(/\s/g, "") ||
+                    "0505115810"
+                  }`}
+                  className={styles.phoneTitle}
+                >
+                  {contactsData?.contactInfo.phone || "050 511 5810"}
                 </a>
-                <p className={styles.phoneSub}>Телефонуйте 08:00 - 20:00</p>
+                <p className={styles.phoneSub}>
+                  Телефонуйте{" "}
+                  {contactsData?.contactInfo.workHours?.weekdayHours ||
+                    "08:00 - 20:00"}
+                </p>
               </div>
             </div>
           </div>
@@ -128,12 +267,22 @@ export default function Contact() {
             </div>
             <div className={styles.schedule}>
               <div className={styles.scheduleCol}>
-                <p className={styles.scheduleDays}>Пн-Пт</p>
-                <p className={styles.scheduleTime}>08:00 - 20:00</p>
+                <p className={styles.scheduleDays}>
+                  {contactsData?.contactInfo.workHours?.weekdays || "Пн-Пт"}
+                </p>
+                <p className={styles.scheduleTime}>
+                  {contactsData?.contactInfo.workHours?.weekdayHours ||
+                    "08:00 - 20:00"}
+                </p>
               </div>
               <div className={styles.scheduleCol}>
-                <p className={styles.scheduleDays}>Сб-Нд</p>
-                <p className={styles.scheduleTime}>09:00 - 18:00</p>
+                <p className={styles.scheduleDays}>
+                  {contactsData?.contactInfo.workHours?.weekend || "Сб-Нд"}
+                </p>
+                <p className={styles.scheduleTime}>
+                  {contactsData?.contactInfo.workHours?.weekendHours ||
+                    "09:00 - 18:00"}
+                </p>
               </div>
             </div>
           </div>
@@ -141,33 +290,40 @@ export default function Contact() {
           <div className={styles.socialBlock}>
             <p className={styles.followTitle}>Слідкуйте за нами</p>
             <div className={styles.iconsRow}>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.iconWrap}
-                aria-label="Instagram"
-              >
-                <Instagram2Icon />
-              </a>
-              <a
-                href="https://wa.me/380505115810"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.iconWrap}
-                aria-label="WhatsApp"
-              >
-                <WhatsappIcon />
-              </a>
-              <a
-                href="https://t.me/+380505115810"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.iconWrap}
-                aria-label="Telegram"
-              >
-                <TelegramIcon />
-              </a>
+              {contactsData?.contactInfo.socialLinks?.[0]?.instagram && (
+                <a
+                  href={contactsData.contactInfo.socialLinks[0].instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.iconWrap}
+                  aria-label="Instagram"
+                >
+                  <Instagram2Icon />
+                </a>
+              )}
+              {contactsData?.contactInfo.socialLinks?.[0]?.telegram && (
+                <a
+                  href={contactsData.contactInfo.socialLinks[0].telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.iconWrap}
+                  aria-label="Telegram"
+                >
+                  <TelegramIcon />
+                </a>
+              )}
+              {/* WhatsApp fallback - використовуємо телефон з viber link */}
+              {contactsData?.locationInfo.viberLink && (
+                <a
+                  href={contactsData.locationInfo.viberLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.iconWrap}
+                  aria-label="Viber"
+                >
+                  <WhatsappIcon />
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -212,22 +368,27 @@ export default function Contact() {
               hasError={!!errors.message}
               supportingText={errors.message?.message || ""}
             />
+
+            {/* Текст про згоду на обробку даних */}
+            <div className={styles.consentContainer}>
+              <p className={styles.consentText}>
+                Конфіденційність та безпека{" "}
+                <a href="/privacy" className={styles.privacyLink}>
+                  політики конфіденційності
+                </a>
+              </p>
+            </div>
+
             <div className={styles.actions}>
               <button
                 type="submit"
-                className={`${styles.submit} ${!isFormFilled ? styles.submitDisabled : ""}`}
+                className={`${styles.submit} ${
+                  !isFormFilled ? styles.submitDisabled : ""
+                }`}
                 disabled={isSubmitting || !isFormFilled}
               >
                 {isSubmitting ? "Відправлення..." : "Залишити за'явку"}
               </button>
-              <p className={styles.note}>
-                Натискаючи кнопку, ви погоджуєтеся на обробку персональних даних
-                відповідно до{" "}
-                <Link href="/privacy" className={styles.privacyLink}>
-                  політики конфіденційності
-                </Link>
-                .
-              </p>
               {submitError && (
                 <p className={styles.note} style={{ color: "#d00" }}>
                   {submitError}

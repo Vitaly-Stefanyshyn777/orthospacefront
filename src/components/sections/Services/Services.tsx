@@ -1,158 +1,188 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./Services.module.css";
 import { ChevronIcon } from "@/src/icons/Icons";
 
-interface SubService {
-  name: string;
-  price: string;
-}
-
+// Типи даних відповідно до API
 interface Service {
-  id: string;
-  name: string;
-  price: string;
-  subServices?: SubService[];
+  id: number;
+  type: string; // "Tooth", "Surgery", etc.
+  name: string; // Назва послуги
+  price: string; // "500.00"
+  isActive: boolean; // Чи активна послуга
+  order: number; // Порядок сортування
+  categoryId: number; // ID батьківської категорії
 }
 
-const services: Service[] = [
-  {
-    id: "01",
-    name: "Обстеження",
-    price: "100-500 ГРН",
-    subServices: [
-      { name: "Консультація", price: "500.00" },
-      { name: "Консультація + діагностика", price: "1000.00" },
-      { name: "Консультація + план лікування", price: "300.00" },
-      { name: "Прицільна рентгенографія", price: "100.00" },
-      { name: "Знеболення", price: "200.00" },
-      { name: "Надання допомоги при гострому болю", price: "400.00" },
-      { name: "Нормо-година лікаря стоматолога", price: "400.00" },
-    ],
-  },
-  {
-    id: "02",
-    name: "Професійна Гігієна Зубів",
-    price: "700-3000 ГРН",
-    subServices: [
-      { name: "Професійна гігієна ротової порожнини", price: "1400.00" },
-      {
-        name: "Професійна гігієна ротової порожнини ускладнена",
-        price: "1700.00",
-      },
-      { name: "Зняття зубних відкладень апаратом Air-Floy", price: "1000.00" },
-      { name: "Ультразвукове зняття зубних відкладень", price: "500.00" },
-      { name: "Фотовідбілювання зубних рядів", price: "3000.00" },
-      { name: "Дитяча проф.гігієга порожнини рота", price: "700.00" },
-    ],
-  },
-  {
-    id: "03",
-    name: "Терапія",
-    price: "1400-2000 ГРН",
-    subServices: [
-      {
-        name: "Реставрація фронтальної групи зубів (1 поверхні)",
-        price: "1600.00",
-      },
-      {
-        name: "Реставрація фронтальної групи зубів (2поверхні)",
-        price: "1800.00",
-      },
-      { name: "Виготовлення силіконового ключа", price: "400.00" },
-      { name: "Реставрація жувальної групи зубів", price: "1300.00 - 1600.00" },
-      {
-        name: "Реставрація фронтальної групи зубів з ураження ріжучого краю",
-        price: "3000.00",
-      },
-      { name: "Моделювання культі зуба під коронку", price: "900.00" },
-      {
-        name: "Реставрація фронтальної групи зубів з восковим моделюванням",
-        price: "2500.00",
-      },
-    ],
-  },
-  {
-    id: "04",
-    name: "Ортодонтія",
-    price: "1400-2000 ГРН",
-    subServices: [
-      { name: "Консультаця ортодонта", price: "500.00" },
-      { name: "Консультаця + діагностика", price: "1000.00" },
-      { name: "Консультація ортодонта дитяча", price: "300.00" },
-      {
-        name: "Активація брекет-системи (контрольний огляд )",
-        price: "800.00",
-      },
-      { name: "Брекет-система на одну щелепу лігатурна", price: "16000.00" },
-      {
-        name: "Брекет-система на одну щелепу самолігатурна",
-        price: "19000.00",
-      },
-      { name: "Встаовлення Мікро-імпланта", price: "2500.00" },
-      { name: "Зняття брекет-системи", price: "1200.00" },
-      { name: "Ретенційна капа", price: "1400.00" },
-      { name: "Фіксація ретейнера", price: "1200.00" },
-      { name: "Корекція ретейнера", price: "300.00" },
-      { name: "Заміна ретейнера", price: "1500.00" },
-      { name: "Заміна брекета", price: "500.00" },
-    ],
-  },
-  {
-    id: "05",
-    name: "Ортопедія",
-    price: "1400-2000 ГРН",
-    subServices: [
-      { name: "Відбиток двошаровий повний", price: "500.00" },
-      { name: "Відбиток двошаровий частковий", price: "300.00" },
-      { name: "відбиток альгінатний", price: "200.00" },
-      { name: "Коронка металокерамічна", price: "3500.00" },
-      { name: "Коронка церконієва на фронтальну групу зубів", price: "210.00" },
-      { name: "Коронка церконієва на жувальну групу зубів", price: "190.00" },
-    ],
-  },
-  {
-    id: "06",
-    name: "Хірургія",
-    price: "800-2500 ГРН",
-    subServices: [
-      { name: "Видалення зуба", price: "800.00" },
-      { name: "Видалення рухомого зуба", price: "500.00" },
-      { name: "Ускладнене видалення зуба", price: "1200.00" },
-      { name: "Видалення верхнього 8 зуба", price: "1500.00" },
-      { name: "Видалення нижнього 8 зуба", price: "1800.00" },
-      { name: "Атипове видалення 8", price: "2500.00" },
-      { name: "Розтин абсцесу, дренаж", price: "500.00" },
-      { name: "К'юретаж", price: "300.00" },
-      { name: "Встановлення гемостатичної губки", price: "200.00" },
-      { name: "Коагуляція ясен", price: "200.00" },
-    ],
-  },
-  {
-    id: "07",
-    name: "Ендодонтія",
-    price: "400-3800 ГРН",
-    subServices: [
-      { name: "Первинне ендодонтичне лікування (різець)", price: "1800.00" },
-      { name: "Первинне ендодонтичне лікування (премоляр)", price: "2300.00" },
-      { name: "Первинне ендодонтичне лікування (моляр)", price: "2400.00" },
-      { name: "Вторинне ендодонтичне лікування (різець)", price: "2200.00" },
-      { name: "Вторинне ендодонтичне лікування (премоляр)", price: "3000.00" },
-      { name: "Вторинне ендодонтичне лікування (моляр)", price: "3800.00" },
-      { name: "Закриття ендодоступу", price: "400.00" },
-      { name: "Преендодонтичне відновлення зуба", price: "500.00" },
-    ],
-  },
-];
+interface ServiceCategory {
+  id: number;
+  categoryId: string; // "01", "02", etc.
+  mainTitle: string; // Назва категорії
+  priceRange: string; // "100-500 ГРН"
+  order: number; // Порядок сортування
+  isActive: boolean; // Чи активна категорія
+  services: Service[]; // Масив послуг цієї категорії
+}
+
+// Конфігурація бекенду
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3002";
 
 export default function Services() {
+  const [categories, setCategories] = useState<ServiceCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [openServiceId, setOpenServiceId] = useState<string | null>(null);
+
+  // Функція отримання даних з API
+  const fetchCategories = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const token = localStorage.getItem("authToken");
+      console.log("🚀 Завантаження категорій послуг...");
+      console.log("📡 URL:", `${BACKEND_URL}/api/v1/public/services`);
+      console.log("🔑 Token:", token ? "Присутній" : "Відсутній");
+
+      // Отримання даних через публічний API
+      const response = await fetch(`${BACKEND_URL}/api/v1/public/services`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "", // JWT токен для авторизації
+        },
+      });
+
+      console.log("📨 Статус відповіді:", response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("✅ Отримано категорії:", data);
+
+      // Зберігаємо дані в стан компонента
+      setCategories(data);
+    } catch (err) {
+      console.error("❌ Помилка завантаження:", err);
+      setError(err instanceof Error ? err.message : "Невідома помилка");
+
+      // Fallback дані при помилці
+      const fallbackData: ServiceCategory[] = [
+        {
+          id: 1,
+          categoryId: "01",
+          mainTitle: "Обстеження",
+          priceRange: "100-500 ГРН",
+          order: 1,
+          isActive: true,
+          services: [
+            {
+              id: 1,
+              type: "Tooth",
+              name: "Консультація",
+              price: "500.00",
+              isActive: true,
+              order: 0,
+              categoryId: 1,
+            },
+            {
+              id: 2,
+              type: "Tooth",
+              name: "Консультація + діагностика",
+              price: "1000.00",
+              isActive: true,
+              order: 1,
+              categoryId: 1,
+            },
+            {
+              id: 3,
+              type: "Tooth",
+              name: "Консультація + план лікування",
+              price: "300.00",
+              isActive: true,
+              order: 2,
+              categoryId: 1,
+            },
+            {
+              id: 4,
+              type: "Tooth",
+              name: "Прицільна рентгенографія",
+              price: "100.00",
+              isActive: true,
+              order: 3,
+              categoryId: 1,
+            },
+          ],
+        },
+        {
+          id: 2,
+          categoryId: "02",
+          mainTitle: "Професійна Гігієна Зубів",
+          priceRange: "700-3000 ГРН",
+          order: 2,
+          isActive: true,
+          services: [
+            {
+              id: 5,
+              type: "Tooth",
+              name: "Професійна гігієна ротової порожнини",
+              price: "1400.00",
+              isActive: true,
+              order: 0,
+              categoryId: 2,
+            },
+            {
+              id: 6,
+              type: "Tooth",
+              name: "Ультразвукове зняття зубних відкладень",
+              price: "500.00",
+              isActive: true,
+              order: 1,
+              categoryId: 2,
+            },
+          ],
+        },
+      ];
+      setCategories(fallbackData);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Автоматичне завантаження при ініціалізації
+  useEffect(() => {
+    fetchCategories(); // Викликається при завантаженні компонента
+  }, []);
 
   const toggleService = (serviceId: string) => {
     setOpenServiceId(openServiceId === serviceId ? null : serviceId);
   };
+
+  console.log("🛠️ Services component: categories:", categories);
+  console.log("🛠️ Services component: loading:", loading);
+  console.log("🛠️ Services component: error:", error);
+
+  // Loading стан
+  if (loading) {
+    return (
+      <section id="services" className={styles.services}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>Наші Послуги</h2>
+          </div>
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Завантаження послуг...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Якщо є помилка, fallback дані вже завантажені, продовжуємо рендеринг
 
   return (
     <section id="services" className={styles.services}>
@@ -167,24 +197,27 @@ export default function Services() {
 
         <div className={styles.content}>
           <div className={styles.servicesList}>
-            {services.map((service) => {
-              const isOpen = openServiceId === service.id;
-              const hasSubServices =
-                service.subServices && service.subServices.length > 0;
+            {categories.map((category) => {
+              const categoryId = category.categoryId;
+              const isOpen = openServiceId === categoryId;
+              const hasServices =
+                category.services && category.services.length > 0;
 
               return (
-                <div key={service.id} className={styles.serviceItem}>
+                <div key={category.id} className={styles.serviceItem}>
                   <div
                     className={`${styles.serviceHeader} ${
-                      hasSubServices ? styles.clickable : ""
+                      hasServices ? styles.clickable : ""
                     }`}
-                    onClick={() => hasSubServices && toggleService(service.id)}
+                    onClick={() => hasServices && toggleService(categoryId)}
                   >
-                    <span className={styles.serviceNumber}>{service.id}</span>
+                    <span className={styles.serviceNumber}>{categoryId}</span>
                     <div className={styles.serviceInfo}>
-                      <span className={styles.serviceName}>{service.name}</span>
+                      <span className={styles.serviceName}>
+                        {category.mainTitle}
+                      </span>
                       <span className={styles.servicePrice}>
-                        {service.price}
+                        {category.priceRange}
                       </span>
                     </div>
                     <div className={styles.arrow}>
@@ -192,11 +225,14 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {hasSubServices && isOpen && service.subServices && (
+                  {hasServices && isOpen && category.services && (
                     <div className={styles.subServicesContainer}>
                       <div className={styles.subServicesList}>
-                        {service.subServices.map((subService, index) => (
-                          <div key={index} className={styles.subServiceItem}>
+                        {category.services.map((service, index) => (
+                          <div
+                            key={service.id}
+                            className={styles.subServiceItem}
+                          >
                             <Image
                               src="/download-removebg-preview.svg"
                               alt="Tooth"
@@ -205,10 +241,10 @@ export default function Services() {
                               className={styles.toothIcon}
                             />
                             <span className={styles.subServiceName}>
-                              {subService.name}
+                              {service.name}
                             </span>
                             <span className={styles.subServicePrice}>
-                              {subService.price}
+                              {service.price}
                             </span>
                           </div>
                         ))}
