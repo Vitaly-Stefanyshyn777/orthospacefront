@@ -251,6 +251,10 @@ export default function Gallery() {
                       width={galleryImages[0].width}
                       height={galleryImages[0].height}
                       className={styles.image}
+                      onError={(e) => {
+                        console.error(`❌ Gallery image failed to load: ${galleryImages[0].src}`);
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
                   </div>
                 )}
@@ -262,6 +266,10 @@ export default function Gallery() {
                       width={galleryImages[1].width}
                       height={galleryImages[1].height}
                       className={styles.image}
+                      onError={(e) => {
+                        console.error(`❌ Gallery image failed to load: ${galleryImages[1].src}`);
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
                   </div>
                 )}
@@ -275,6 +283,10 @@ export default function Gallery() {
                       width={galleryImages[3].width}
                       height={galleryImages[3].height}
                       className={styles.image}
+                      onError={(e) => {
+                        console.error(`❌ Gallery image failed to load: ${galleryImages[3].src}`);
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
                   </div>
                 )}
@@ -287,6 +299,10 @@ export default function Gallery() {
                         width={galleryImages[4].width}
                         height={galleryImages[4].height}
                         className={styles.image}
+                        onError={(e) => {
+                          console.error(`❌ Gallery image failed to load: ${galleryImages[4].src}`);
+                          e.currentTarget.style.display = "none";
+                        }}
                       />
                     </div>
                   )}
@@ -298,6 +314,10 @@ export default function Gallery() {
                         width={galleryImages[5].width}
                         height={galleryImages[5].height}
                         className={styles.image}
+                        onError={(e) => {
+                          console.error(`❌ Gallery image failed to load: ${galleryImages[5].src}`);
+                          e.currentTarget.style.display = "none";
+                        }}
                       />
                     </div>
                   )}
@@ -313,6 +333,10 @@ export default function Gallery() {
                     width={galleryImages[2].width}
                     height={galleryImages[2].height}
                     className={styles.image}
+                    onError={(e) => {
+                      console.error(`❌ Gallery image failed to load: ${galleryImages[2].src}`);
+                      e.currentTarget.style.display = "none";
+                    }}
                   />
                 </div>
               )}
@@ -324,6 +348,10 @@ export default function Gallery() {
                     width={galleryImages[6].width}
                     height={galleryImages[6].height}
                     className={styles.image}
+                    onError={(e) => {
+                      console.error(`❌ Gallery image failed to load: ${galleryImages[6].src}`);
+                      e.currentTarget.style.display = "none";
+                    }}
                   />
                 </div>
               )}

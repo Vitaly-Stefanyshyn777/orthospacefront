@@ -19,7 +19,7 @@ interface ContactsData {
 }
 
 // Конфігурація бекенду
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3002";
+const BACKEND_URL = "/api";
 
 export default function Location() {
   // Стан для даних місцезнаходження

@@ -54,8 +54,8 @@ class ApiClient {
    */
   async submitForm(payload: SubmitFormPayload): Promise<SubmitFormResponse> {
     try {
-      // Використовуємо API проксі для уникнення CORS проблем
-      const response = await fetch("/api/form", {
+      // Використовуємо Vercel проксі, який перенаправляє на Railway
+      const response = await fetch("/api/v1/public/form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

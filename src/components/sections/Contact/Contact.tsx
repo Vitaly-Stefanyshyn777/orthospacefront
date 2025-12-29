@@ -51,9 +51,8 @@ interface ContactsData {
   locationInfo: LocationInfo;
 }
 
-// Конфігурація бекенду
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3002";
+// Конфігурація бекенду - використовуємо відносні шляхи для Vercel проксі
+const BACKEND_URL = "/api";
 
 type FormValues = {
   email: string;
@@ -104,7 +103,7 @@ export default function Contact() {
 
       const token = localStorage.getItem("authToken");
       console.log("🚀 Завантаження контактних даних...");
-      console.log("📡 URL:", `${BACKEND_URL}/api/v1/public/contacts`);
+      console.log("📡 URL:", `${BACKEND_URL}/v1/public/contacts`);
       console.log("🔑 Token:", token ? "Присутній" : "Відсутній");
 
       // Отримання даних через API proxy

@@ -26,8 +26,8 @@ interface ServiceCategory {
   services: Service[]; // Масив послуг цієї категорії
 }
 
-// Конфігурація бекенду
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3002";
+// Конфігурація бекенду - використовуємо відносні шляхи для Vercel проксі
+const BACKEND_URL = "/api";
 
 export default function Services() {
   const [categories, setCategories] = useState<ServiceCategory[]>([]);
@@ -47,7 +47,7 @@ export default function Services() {
       console.log("🔑 Token:", token ? "Присутній" : "Відсутній");
 
       // Отримання даних через публічний API
-      const response = await fetch(`${BACKEND_URL}/api/v1/public/services`, {
+      const response = await fetch(`${BACKEND_URL}/v1/public/services`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "", // JWT токен для авторизації
