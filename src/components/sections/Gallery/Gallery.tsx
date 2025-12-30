@@ -149,13 +149,17 @@ export default function Gallery() {
         height: photo.height || 270,
       }));
 
-  // Використовуємо статичні fallback зображення (7 зображень)
-  const galleryImages = fallbackGalleryImages;
+  // Вибираємо між API даними та fallback зображеннями
+  // Перевага віддається API даним, якщо вони є та валідні
+  const galleryImages = validApiImages.length > 0 ? apiImages : fallbackGalleryImages;
 
   // Консоль логи для перевірки відображення
   console.log("🎨 Gallery Images Display Check:", {
     totalImages: galleryImages.length,
-    usingStaticFallback: true,
+    usingApiData: validApiImages.length > 0,
+    usingStaticFallback: validApiImages.length === 0,
+    apiImagesCount: validApiImages.length,
+    fallbackImagesCount: fallbackGalleryImages.length,
     images: galleryImages.map((img, index) => ({
       slot: index + 1,
       id: img.id,
@@ -163,6 +167,7 @@ export default function Gallery() {
       alt: img.alt,
       width: img.width,
       height: img.height,
+      isFromAPI: validApiImages.length > 0 && index < validApiImages.length,
     })),
   });
 
