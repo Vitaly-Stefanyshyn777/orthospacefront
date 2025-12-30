@@ -118,7 +118,8 @@ export default function RootLayout({
         <meta property="og:image:height" content="627" />
 
         {/* Pinterest specific */}
-        <meta name="pinterest" content="nopin" description="OrthoSpace Dental Clinic" />
+        <meta name="pinterest" content="nopin" />
+        <meta name="pinterest-rich-pin" content="false" />
         <meta property="og:image" content="https://orthospacefront.vercel.app/Frame44.png" />
 
         {/* Discord specific */}
