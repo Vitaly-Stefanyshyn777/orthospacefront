@@ -95,19 +95,61 @@ export default function RootLayout({
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="OrthoSpace Dental Clinic - Сучасна стоматологія в Долині" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:secure_url" content="https://orthospacefront.vercel.app/Frame44.png" />
 
         {/* Facebook specific */}
         <meta property="fb:app_id" content="your-facebook-app-id" />
 
+        {/* Instagram specific - uses Open Graph */}
+        <meta property="og:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
         {/* Telegram specific */}
         <meta property="telegram:channel" content="@orthospace" />
 
-        {/* Additional SEO tags */}
+        {/* WhatsApp specific */}
+        <meta property="og:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+
+        {/* LinkedIn specific */}
+        <meta property="og:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="627" />
+
+        {/* Pinterest specific */}
+        <meta name="pinterest" content="nopin" description="OrthoSpace Dental Clinic" />
+        <meta property="og:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+
+        {/* Discord specific */}
+        <meta property="og:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+
+        {/* Slack specific */}
+        <meta name="twitter:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+
+        {/* General social media image preload */}
+        <link rel="preload" as="image" href="/Frame44.png" />
+
+        {/* Additional Open Graph for better compatibility */}
+        <meta property="og:image:url" content="https://orthospacefront.vercel.app/Frame44.png" />
+        <meta property="og:image:secure_url" content="https://orthospacefront.vercel.app/Frame44.png" />
+
+        {/* Twitter specific (additional) */}
+        <meta name="twitter:image" content="https://orthospacefront.vercel.app/Frame44.png" />
+        <meta name="twitter:image:alt" content="OrthoSpace Dental Clinic - Сучасна стоматологія в Долині" />
+        <meta name="twitter:image:width" content="1200" />
+        <meta name="twitter:image:height" content="630" />
+
+        {/* Mobile optimization */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#00d4aa" />
         <meta name="msapplication-TileColor" content="#00d4aa" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="OrthoSpace" />
+
+        {/* Image optimization for social sharing */}
+        <link rel="image_src" href="https://orthospacefront.vercel.app/Frame44.png" />
 
         {/* Structured Data for Google */}
         <script
