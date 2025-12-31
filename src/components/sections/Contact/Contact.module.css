@@ -703,6 +703,13 @@
     font-size: mvw(14);
     border-radius: mvw(8);
   }
+
+  .consentText {
+    font-family: var(--font-family);
+
+    font-size: mvw(12);
+  }
+
   .err {
     right: mvw(8);
     top: mvw(8);

@@ -25,3 +25,4 @@ NEXT_PUBLIC_API_BASE_URL=https://orthospaceabackendtwo-production.up.railway.app
 
 Усі жорстко закодовані URL `http://localhost:3002` були замінені на використання змінної середовища для легкого переключення між різними середовищами (розробка, продакшн, staging).
 
+
